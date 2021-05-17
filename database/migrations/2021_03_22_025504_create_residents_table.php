@@ -79,8 +79,12 @@ class CreateResidentsTable extends Migration
             $table->string('group_sessions')->nullable();
             $table->string('others')->nullable();
             $table->string('commentaries')->nullable();
+            // $table->binary('photo')->nullable();         
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE residents ADD photo MEDIUMBLOB");
+
     }
 
     /**

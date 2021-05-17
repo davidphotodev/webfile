@@ -28,10 +28,12 @@ Route::prefix('residents')->group(function () {
     Route::get('/getData', [ResidentController::class, 'getData'])->name('resident.get');
     Route::delete('/destroy/{id}', [ResidentController::class, 'destroy'])->name('resident.destroy');
     Route::delete('/destroySeveralRecords/{ids}', [ResidentController::class, 'destroySeveralRecords'])->name('resident.destroySeveralRecords');
-    
+    Route::get('getCantonJson',[ResidentController::class, 'getCantonJson'])->name('getCantonJson');
+
 
     Route::get('/getResidentsCompressed', [ResidentController::class, 'getResidentsCompressed']);
 });
+
 
 Auth::routes();
 

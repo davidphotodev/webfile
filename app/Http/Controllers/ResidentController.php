@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Resident;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\Session;
 
 class ResidentController extends Controller
 {
@@ -43,7 +44,6 @@ class ResidentController extends Controller
     public function store(Request $request)
     {
     //    return json_encode($request->consumption_data_table);
-
        $resident = new Resident;
        $resident->name  = $request->name;   
        $resident->surname  = $request->surname;
@@ -83,7 +83,6 @@ class ResidentController extends Controller
        $resident->address  = $request->address;   
        $resident->psychiatric_diagnosis  = $request->psychiatric_diagnosis;   
        $resident->drug_dependence_diagnosis  = $request->drug_dependence_diagnosis;   
-    //    $resident->consumption_data_table  = {'name' => 'hola'};   
        $resident->consumption_data_table  =  json_encode($request->consumption_data_table);   
        $resident->pending_cases  = $request->pending_cases;   
        $resident->egress  = $request->egress;   
@@ -110,10 +109,14 @@ class ResidentController extends Controller
        $resident->group_sessions  = $request->group_sessions;   
        $resident->others  = $request->others;   
        $resident->commentaries  = $request->commentaries;   
+       $resident->photo  = $request->image;
+
     //    $resident->save();
       
+       
         try {
             if ($resident->save()) {
+                Session::flash('message', 'Registro creado con exito');
                 return response()->json([
                     'response' => "Success"
                 ]);
@@ -203,10 +206,13 @@ class ResidentController extends Controller
         $resident->group_sessions  = $request->group_sessions;   
         $resident->others  = $request->others;   
         $resident->commentaries  = $request->commentaries;   
+        $resident->photo  = $request->image;   
  
        
          try {
              if ($resident->save()) {
+                Session::flash('message', 'Registro Actualizado con exito');
+
                  return response()->json([
                      'response' => "Success"
                  ]);
@@ -221,6 +227,7 @@ class ResidentController extends Controller
         $resident = Resident::find($request->id);
         try {
             if ($resident->delete()) {
+                // Session::flash('message', 'Registro eliminado con exito');
                 return response()->json([
                     'response' => "Success"
                 ]);
@@ -234,6 +241,8 @@ class ResidentController extends Controller
         try {
             $ids = explode(',', $residents->ids);
             if (Resident::destroy($ids)) {
+                // Session::flash('message', 'Registros eliminados con exito');
+
                 return response()->json([
                     'response' => "Success"
                 ]);

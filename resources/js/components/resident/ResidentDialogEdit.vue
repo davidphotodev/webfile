@@ -14,6 +14,13 @@
                 <div class="mb-3">
                     <strong class="text-18">Datos Generales</strong>
                 </div>
+               <div style="display:flex;align-items: center;justify-content: center;" class="mb-3">
+                    <input type="file" id="image" placeholder="Imagen corporativa" @change="getImage" accept="image/*" ref="image" class="common-input">
+                        <Avatar 
+                            :image="form.image"
+                            size="xlarge"
+                        />
+                </div>
 
                 <div class="p-fluid p-formgrid p-grid">
                     <div class="p-field p-col">
@@ -26,7 +33,7 @@
                     </div>
                     <div class="p-field p-col">
                         <label for="second_surname" class="p-sr-only">Segundo Apellido</label>
-                        <InputText v-model="form.second_surname" id="second_surname" name="second_surname" type="text" placeholder="Segundo Apellido"  v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('second_surname')}"/>
+                        <InputText v-model="form.second_surname" id="second_surname" name="second_surname" type="text" placeholder="Segundo Apellido" />
                     </div>
                 </div>
                 
@@ -39,16 +46,13 @@
                     </div>
                     <div class="p-field p-col">
                         <label for="identification" class="p-sr-only">Identificación</label>
-                        <InputText v-model="form.identification" id="identification" type="text" placeholder="Identificación"  name="identification" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('identification')}"/>
+                        <InputText v-model="form.identification" id="identification" type="text" placeholder="Identificación"  name="identification" />
                     </div>
                     <div class="p-field p-col">
                         <Dropdown 
                             v-model="form.genre" 
                             :options="generes"       
-                            name="generes" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('generes')}"                         
+                            name="generes"                      
                             placeholder="Sexo" />
                     </div>
                 </div>
@@ -57,18 +61,16 @@
            
                     <div class="p-field p-col">
                         <label for="firstname5" class="p-sr-only">Número de expediente</label>
-                        <InputNumber v-model="form.record" :format="false" id="record" placeholder="Número de expediente" name="record" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('record')}" />
-                        <input type="hidden"  v-model="form.record"  placeholder="Número de expediente" name="record" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('record')}" >
+                        <InputNumber v-model="form.record" :format="false" id="record" placeholder="Número de expediente" name="record" />
                     </div>
                
                     <div class="p-field p-col">
                         <label for="lastname5" class="p-sr-only">Edad</label>
-                        <InputNumber v-model="form.age" :format="false" :min="0" :max="100" id="age" placeholder="Edad" name="age" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('age')}"  />
-                        <input  type="hidden" v-model="form.age" :format="false" :min="0" :max="100" placeholder="Edad" name="age" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('age')}"  />
+                        <InputNumber v-model="form.age" :format="false" :min="0" :max="100" id="age" placeholder="Edad" name="age" />
                     </div>
                     <div class="p-field p-col">
                         <label for="lastname5" class="p-sr-only">Creencia Religiosa</label>
-                        <InputText v-model="form.religion" id="religion" type="text" placeholder="Creencia Religiosa"  name="religion" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('religion')}"  />
+                        <InputText v-model="form.religion" id="religion" type="text" placeholder="Creencia Religiosa"  name="religion" />
                     </div>
                 </div>
 
@@ -83,17 +85,6 @@
                             :yearRange="yearRange"
                             id="date_birth"
                             name="date_birth" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('date_birth')}"
-                            placeholder="Fecha de Nacimiento" />
-
-                        <input type="hidden" 
-                            v-model="form.date_birth"
-                            name="date_birth" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('date_birth')}"
                             placeholder="Fecha de Nacimiento" />
                     </div>
                     <div class="p-field p-col">
@@ -102,9 +93,6 @@
                             v-model="form.origin" 
                             :options="origins" 
                             name="origin" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('origin')}"
                             placeholder="Procedencia" />
                     </div>
                     <div class="p-field p-col">
@@ -113,9 +101,6 @@
                             v-model="form.status" 
                             :options="statusList" 
                             name="status" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('status')}"      
                             placeholder="Estatus" />
                     </div>
                 </div>
@@ -135,17 +120,11 @@
                             :showIcon="true" 
                             id="admission_date"
                             name="admission_date" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('admission_date')}"
                             placeholder="Fecha de ingreso" />
 
                         <input type="hidden" 
                             v-model="form.admission_date"
                             name="admission_date" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('admission_date')}"
                             placeholder="Fecha de Nacimiento" />
                     </div>
                     <div class="p-field p-col">
@@ -155,17 +134,11 @@
                             :showIcon="true" 
                             id="egress_date"
                             name="egress_date" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('egress_date')}"
                             placeholder="Fecha de egreso" />
 
                         <input type="hidden" 
                             v-model="form.egress_date"
                             name="egress_date" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('egress_date')}"
                             placeholder="Fecha de Nacimiento" />
                     </div>
                 </div>
@@ -180,18 +153,8 @@
                             hourFormat="12" 
                             id="entry_hour"
                             name="entry_hour" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('entry_hour')}"
                             placeholder="Hora de ingreso" />
 
-                        <input type="hidden" 
-                            v-model="form.entry_hour"
-                            name="entry_hour" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('entry_hour')}"
-                            placeholder="Fecha de Nacimiento" />
                     </div>
                     <div class="p-field p-col">
                         <label for="egress_date" class="p-sr-only">Hora de Egreso</label>
@@ -202,19 +165,8 @@
                             hourFormat="12"
                             id="egress_hour"
                             name="egress_hour" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('egress_hour')}"
                             placeholder="Hora de egreso" />
 
-
-                        <input type="hidden" 
-                            v-model="form.egress_hour"
-                            name="egress_hour" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('egress_hour')}"
-                            placeholder="Fecha de Nacimiento" />
                     </div>
                 </div>
 
@@ -225,9 +177,6 @@
                             v-model="form.first_treatment" 
                             :options="yesOrNot" 
                             name="first_treatment" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('first_treatment')}"   
                             placeholder="¿Primer tratamiento?" />
                     </div>
                     <div class="p-field p-col">
@@ -236,23 +185,14 @@
                             v-model="form.another_center_entered" 
                             :options="yesOrNot" 
                             name="another_center_entered" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('another_center_entered')}"   
                             placeholder="¿Ingresó a otro centro este año?" />
                     </div>
                     <div class="p-field p-col">
                         <label for="times_he_entered" class="p-sr-only">Cantidad de veces</label>
                         <InputNumber v-model="form.times_he_entered" id="times_he_entered" placeholder="Ingrese la cantidad"
                             name="times_he_entered" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('times_he_entered')}"/>
-                        <input type="hidden" v-model="form.times_he_entered" id="times_he_entered" placeholder="Ingrese la cantidad"
-                            name="times_he_entered" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('times_he_entered')}"/>
+                         />
+                     
                     </div>
                 </div>
             </div>
@@ -270,9 +210,6 @@
                             v-model="form.marital_status" 
                             :options="marital_status" 
                             name="marital_status" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('marital_status')}"  
                             placeholder="Estado Civil" />
                     </div>
                     <div class="p-field p-col">
@@ -281,15 +218,11 @@
                             v-model="form.have_children" 
                             :options="yesOrNot" 
                             name="have_children" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('have_children')}"  
                             placeholder="¿Tiene hijos?" />
                     </div>
                     <div class="p-field p-col">
                         <label for="children_number" class="p-sr-only">Cantidad de hijos</label>
-                        <InputNumber v-model="form.children_number" id="children_number" placeholder="Cantidad de hijos" name="children_number" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('children_number')}" />
-                        <input type="hidden" v-model="form.children_number" placeholder="Cantidad de hijos" name="children_number" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('children_number')}" />
+                        <InputNumber v-model="form.children_number" id="children_number" placeholder="Cantidad de hijos" name="children_number" />
                     </div>
                 </div>
 
@@ -300,9 +233,6 @@
                             v-model="form.job" 
                             :options="yesOrNot" 
                             name="job" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('job')}"  
                             placeholder="¿Trabajo remunerado?" />
                     </div>
                     <div class="p-field p-col">
@@ -311,9 +241,6 @@
                             v-model="form.occupation" 
                             :options="occupation" 
                             name="occupation" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('occupation')}"  
                             placeholder="Ocupación" />
                     </div>
                     <div class="p-field p-col">
@@ -322,9 +249,6 @@
                             v-model="form.study" 
                             :options="yesOrNot" 
                             name="study" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('study')}"  
                             placeholder="¿Estudia?" />
                     </div>
                 </div>
@@ -336,9 +260,6 @@
                             v-model="form.educational_level" 
                             :options="educational_level" 
                             name="educational_level" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('educational_level')}" 
                             placeholder="Máximo nivel de estudio" />
                     </div>
                     <div class="p-field p-col">
@@ -347,15 +268,11 @@
                             v-model="form.kind_resident" 
                             :options="kind_resident" 
                             name="kind_resident" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('kind_resident')}" 
                             placeholder="Tipo de residencia" />
                     </div>
                     <div class="p-field p-col">
                         <label for="cellphone" class="p-sr-only">Número de teléfono</label>
-                        <InputNumber v-model="form.cellphone" :format="false" id="cellphone" placeholder="Número de teléfono"  name="cellphone" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('cellphone')}"/>
-                        <input type="hidden" v-model="form.cellphone" :format="false"  placeholder="Número de teléfono"  name="cellphone" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('cellphone')}"/>
+                        <InputNumber v-model="form.cellphone" :format="false" id="cellphone" placeholder="Número de teléfono"  name="cellphone" />
                     </div>
                 </div>
 
@@ -366,9 +283,6 @@
                             v-model="form.on_street" 
                             :options="yesOrNot" 
                             name="on_street" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('on_street')}" 
                             placeholder="Se encuentra en calle" />
                     </div>
                     <div class="p-field p-col">
@@ -377,9 +291,6 @@
                             v-model="form.referral_from_cai" 
                             :options="referral_from_cai" 
                             name="referral_from_cai" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('referral_from_cai')}" 
                             placeholder="¿De que CAID viene referido?" />
                     </div>
                 </div>
@@ -391,14 +302,11 @@
                             v-model="form.destiny" 
                             :options="destiny"
                             name="destiny" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('destiny')}" 
                             placeholder="Con destino" />
                     </div>
                     <div class="p-field p-col">
                         <label for="destiny_reason" class="p-sr-only">Razón</label>
-                        <InputText v-model="form.destiny_reason" id="destiny_reason" placeholder="Razón"  name="destiny_reason" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('destiny_reason')}"/>
+                        <InputText v-model="form.destiny_reason" id="destiny_reason" placeholder="Razón"  name="destiny_reason" />
                     </div>
                 </div>
 
@@ -406,17 +314,17 @@
                     <div class="p-field p-col">
                         <label for="province" class="p-sr-only">Provincia</label>
                         <Dropdown 
-                            v-model="province" 
+                            v-model="form.province" 
                             :options="provinces"
-                            optionLabel="name"
+                            optionLabel=""
                             placeholder="Provincia" />
                     </div>
                     <div class="p-field p-col">
                         <label for="canton" class="p-sr-only">Cantón</label>
                         <Dropdown 
-                            v-model="canton" 
-                            :options="cantones" 
-                            optionLabel="name"
+                            v-model="form.canton" 
+                            :options="listCanton" 
+                            optionLabel=""
                             placeholder="Cantón" />
                     </div>
                 </div>
@@ -424,7 +332,7 @@
                 <div class="p-fluid p-formgrid p-grid">
                     <div class="p-field p-col">
                         <label for="address" class="p-sr-only">Dirección</label>
-                        <InputText v-model="form.address" id="address" placeholder="Dirección" name="address" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('address')}" />
+                        <InputText v-model="form.address" id="address" placeholder="Dirección" name="address"/>
                     </div>
                 </div>
             </div>
@@ -437,11 +345,11 @@
                 <div class="p-fluid p-formgrid p-grid">
                     <div class="p-field p-col">
                         <label for="psychiatric_diagnosis" class="p-sr-only">Diagnóstico psiquiátrico</label>
-                        <InputText v-model="form.psychiatric_diagnosis" id="psychiatric_diagnosis" placeholder="Diagnóstico psiquiátrico"   name="psychiatric_diagnosis" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('psychiatric_diagnosis')}"/>
+                        <InputText v-model="form.psychiatric_diagnosis" id="psychiatric_diagnosis" placeholder="Diagnóstico psiquiátrico"   name="psychiatric_diagnosis"/>
                     </div>
                     <div class="p-field p-col">
                         <label for="drug_dependence_diagnosis" class="p-sr-only">Diagnóstico farmacodependencia</label>
-                        <InputText v-model="form.drug_dependence_diagnosis" id="drug_dependence_diagnosis" placeholder="Diagnóstico farmacodependencia"   name="drug_dependence_diagnosis" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('drug_dependence_diagnosis')}" />
+                        <InputText v-model="form.drug_dependence_diagnosis" id="drug_dependence_diagnosis" placeholder="Diagnóstico farmacodependencia"   name="drug_dependence_diagnosis"/>
                     </div>
                 </div>
 
@@ -460,25 +368,37 @@
                         <tbody>
                             <tr v-for="(item, index) in consumption_data_table" :key="index">
                                 <td> 
-                                    <input v-model="item.substance" class="form-control" type="text">
+                                    <InputText v-model="item.substance" class="form-control" type="text" :name="'substance'+index" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('substance'+index)}"/>
                                 </td>
                                 <td> 
-                                    <Dropdown v-model="item.start_year" :options="years" />
+                                    <Dropdown v-model="item.start_year" :options="years" :name="'start_year'+index" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('start_year'+index)}"/>
                                 </td>
                                 <td> 
-                                    <input v-model="item.frequency_consumption" class="form-control" type="text">
+                                    <InputText v-model="item.frequency_consumption" class="form-control" type="text" :name="'frequency_consumption'+index" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('frequency_consumption'+index)}"/>
                                 </td>
                                 <td> 
-                                    <input v-model="item.usual_dose" class="form-control" type="text">
+                                    <InputText v-model="item.usual_dose" class="form-control" type="text" :name="'usual_dose'+index" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('usual_dose'+index)}"/>
                                 </td>
                                 <td> 
-                                    <input v-model="item.usual_administratio_way" class="form-control" type="text">
+                                    <InputText v-model="item.usual_administratio_way" class="form-control" type="text" :name="'usual_administratio_way'+index" v-validate data-vv-rules="required" :class="{'p-invalid': errors.has('usual_administratio_way'+index)}"/>
                                 </td>
                                 <td> 
                                     <Calendar 
                                         v-model="item.last_consumption_date" 
                                         :showIcon="true" 
-                                        id="last_consumption_date"/>
+                                        id="last_consumption_date"
+                                        :name="'last_consumption_date'+index" 
+                                        v-validate data-vv-rules="required" 
+                                        :class="{'p-invalid': errors.has('last_consumption_date'+index)}"
+                                    />
+                                           
+                                    <input type="hidden" 
+                                    v-model="item.last_consumption_date"
+                                    :name="'last_consumption_date'+index" 
+                                    v-validate 
+                                    data-vv-rules="required" 
+                                    :class="{'p-invalid': errors.has('last_consumption_date'+index)}"
+                                    />
                                 </td>
                                 <td>
                                     <Button @click="deleteRow(index)" icon="pi pi-times" class="p-button-rounded p-button-help p-button-outlined" />
@@ -506,9 +426,6 @@
                             v-model="form.pending_cases" 
                             :options="yesOrNot"
                             name="pending_cases" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('pending_cases')}" 
                             placeholder="¿Tiene casos pendientes por infringir las leyes?" />
                     </div>
                     <div class="p-field p-col">
@@ -517,9 +434,6 @@
                             v-model="form.egress" 
                             :options="yesOrNot" 
                             name="egress" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('egress')}" 
                             placeholder="Egreso" />
                     </div>
                     <div class="p-field p-col">
@@ -528,9 +442,6 @@
                             v-model="form.egress_reason_law" 
                             :options="egress_reason_law" 
                             name="egress_reason_law" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('egress_reason_law')}" 
                             placeholder="Motivo" />
                     </div>
                 </div>
@@ -546,9 +457,6 @@
                             v-model="form.drugs" 
                             :options="yesOrNot"
                             name="drugs" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('drugs')}" 
                             placeholder="Asociadas a las drogas" />
                     </div>
                     <div class="p-field p-col">
@@ -557,9 +465,6 @@
                             v-model="form.sexual_nature" 
                             :options="yesOrNot"
                             name="sexual_nature" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('sexual_nature')}"  
                             placeholder="De índole sexual" />
                     </div>
                     <div class="p-field p-col">
@@ -568,9 +473,6 @@
                             v-model="form.against_property" 
                             :options="yesOrNot"
                             name="against_property" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('against_property')}"  
                             placeholder="Contra la propiedad" />
                     </div>
                 </div>
@@ -582,9 +484,6 @@
                             v-model="form.against_life" 
                             :options="yesOrNot"
                             name="against_life" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('against_life')}"  
                             placeholder="Contra la vida" />
                     </div>
                     <div class="p-field p-col">
@@ -593,9 +492,6 @@
                             v-model="form.others_law" 
                             :options="yesOrNot"
                             name="others_law" 
-                            v-validate 
-                            data-vv-rules="required" 
-                            :class="{'p-invalid': errors.has('others_law')}"   
                             placeholder="Otros" />
                     </div>
                 </div>
@@ -623,6 +519,7 @@
 
 <script>
 import { Field } from 'vee-validate';
+import  {cantonesData} from '../../utils/cantones.js';
 
 export default {
     name: 'ResidentDialogEdit',
@@ -645,6 +542,8 @@ export default {
             years: [],
             province: {},
             canton: {},
+            listCanton: [],
+            cantonesData: cantonesData,
             consumption_data_table: JSON.parse(this.resident.consumption_data_table),
             egress_reason_law: ['Cumplió', 'Abandonó o Fuga', 'Expulsión', 'Traslado', 'Otro'],
             form: {
@@ -712,6 +611,7 @@ export default {
                 group_sessions: this.resident.group_sessions,
                 others: this.resident.others,
                 commentaries: this.resident.commentaries,
+                image: this.resident.photo,
             },
 
             occupation: ['Administrador','Agricultor','Amo de Casa','Área Salud','Bodeguero','Call Center','Chofer',
@@ -731,17 +631,27 @@ export default {
         for (let index = year; index >= 1970 ; index--) {
             this.years.push(index)
         }
-        try {
-            let result = await axios.get('https://ubicaciones.paginasweb.cr/provincias.json');
-
-            Object.entries(await result.data).forEach(([index, value]) => {
-                this.provinces.push({
-                    name: value,
-                    index: index
-                });
-            });
-        } catch (error) {
-            this.$toast.add({severity:'error', summary: 'Hay un error con el sitema, contacte a soporte', detail:'No se pueden cargar las provincias', life: 3000});
+        this.provinces = ['San José', 'Alajuela', 'Cartago','Heredia','Guanacaste','Puntarenas','Limón'];
+        if (this.form.province == 'San José') {
+                this.listCanton = this.cantonesData[0].catones;
+        }
+        if (this.form.province == 'Alajuela') {
+                this.listCanton = this.cantonesData[1].catones;
+        }
+        if (this.form.province == 'Cartago') {
+                this.listCanton = this.cantonesData[2].catones;
+        }
+        if (this.form.province == 'Heredia') {
+                this.listCanton = this.cantonesData[3].catones;
+        }
+        if (this.form.province == 'Guanacaste') {
+                this.listCanton = this.cantonesData[4].catones;
+        }
+        if (this.form.province == 'Puntarenas') {
+                this.listCanton = this.cantonesData[5].catones;
+        }
+        if (this.form.province == 'Limón') {
+                this.listCanton = this.cantonesData[6].catones;
         }
     },
     methods: {
@@ -795,15 +705,15 @@ export default {
                 }
             })            
 
-            this.form.province = this.province.name;
-            this.form.canton = this.canton.name;
+            // this.form.province = this.province;
+            // this.form.canton = this.canton;
             console.log(this.form);
 
             
             axios.put('/residents/update/' + this.resident.id, this.form)
                 .then(response => {
                     this.$toast.add({severity:'success', summary: 'Operación exitosa', detail:'Residente Actualizado', life: 3000});
-                    console.log(response)
+                    // console.log(response)
                     window.location = location.origin + "/residents";
                     // this.clearForm();
                 })
@@ -878,7 +788,15 @@ export default {
                 others: null,
                 commentaries: null,
              }
-        }
+        },
+        getImage(e) {
+            let image = e.target.files[0];
+            let reader = new FileReader();
+            reader.readAsDataURL(image);
+            reader.onload = e => {
+              this.form.image = e.target.result;
+            }
+        },
     },
     computed: {
       yearRange(){
@@ -887,16 +805,29 @@ export default {
       }
     },
     watch: {
-        async province(newValue){
-            console.log(newValue);
-            const result = await axios.get(`https://ubicaciones.paginasweb.cr/provincia/${this.province.index}/cantones.json`);
-            this.cantones = [];
-            Object.entries(await result.data).forEach(([index, value]) => {
-                this.cantones.push({
-                    name: value,
-                    index: index
-                });
-            });
+        async 'form.province'(newValue){
+
+            if (newValue == 'San José') {
+				 this.listCanton = this.cantonesData[0].catones;
+			}
+			if (newValue == 'Alajuela') {
+				 this.listCanton = this.cantonesData[1].catones;
+			}
+			if (newValue == 'Cartago') {
+				 this.listCanton = this.cantonesData[2].catones;
+			}
+			if (newValue == 'Heredia') {
+				 this.listCanton = this.cantonesData[3].catones;
+			}
+			if (newValue == 'Guanacaste') {
+				 this.listCanton = this.cantonesData[4].catones;
+			}
+			if (newValue == 'Puntarenas') {
+				 this.listCanton = this.cantonesData[5].catones;
+			}
+			if (newValue == 'Limón') {
+				 this.listCanton = this.cantonesData[6].catones;
+			}
         }
     }
 }

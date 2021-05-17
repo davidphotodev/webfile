@@ -1933,6 +1933,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Resident",
   data: function data() {
@@ -2157,8 +2158,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-
-
+/* harmony import */ var _utils_cantones_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/cantones.js */ "./resources/js/utils/cantones.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2170,6 +2170,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -2695,109 +2697,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ResidentDialogAdd',
@@ -2824,8 +2724,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       provinces: [],
       cantones: [],
       years: [],
-      province: {},
-      canton: {},
+      province: '',
+      canton: '',
+      listCanton: [],
+      cantonesData: _utils_cantones_js__WEBPACK_IMPORTED_MODULE_2__.cantonesData,
       consumption_data_table: [{
         substance: '',
         start_year: '',
@@ -2842,6 +2744,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         identification: null,
         nationality: 'Perú',
         genre: null,
+        image: '',
         record: null,
         age: null,
         religion: null,
@@ -2910,11 +2813,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var year, index, result;
+      var year, index;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              console.log(_utils_cantones_js__WEBPACK_IMPORTED_MODULE_2__.cantonesData);
               _this.localState = _this.isActive;
               year = new Date().getFullYear();
 
@@ -2922,50 +2826,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.years.push(index);
               }
 
-              _context.prev = 3;
-              _context.next = 6;
-              return axios.get('https://ubicaciones.paginasweb.cr/provincias.json');
+              _this.provinces = ['San José', 'Alajuela', 'Cartago', 'Heredia', 'Guanacaste', 'Puntarenas', 'Limón'];
 
-            case 6:
-              result = _context.sent;
-              _context.t0 = Object;
-              _context.next = 10;
-              return result.data;
-
-            case 10:
-              _context.t1 = _context.sent;
-
-              _context.t0.entries.call(_context.t0, _context.t1).forEach(function (_ref) {
-                var _ref2 = _slicedToArray(_ref, 2),
-                    index = _ref2[0],
-                    value = _ref2[1];
-
-                _this.provinces.push({
-                  name: value,
-                  index: index
-                });
-              });
-
-              _context.next = 17;
-              break;
-
-            case 14:
-              _context.prev = 14;
-              _context.t2 = _context["catch"](3);
-
-              _this.$toast.add({
-                severity: 'error',
-                summary: 'Hay un error con el sitema, contacte a soporte',
-                detail: 'No se pueden cargar las provincias',
-                life: 3000
-              });
-
-            case 17:
+            case 5:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[3, 14]]);
+      }, _callee);
     }))();
   },
   methods: {
@@ -3042,10 +2910,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       // this.form.consumption_data_table = JSON.stringify(this.consumption_data_table);
       var result = Object.entries(this.form);
-      result.forEach(function (_ref3, index) {
-        var _ref4 = _slicedToArray(_ref3, 2),
-            key = _ref4[0],
-            value = _ref4[1];
+      result.forEach(function (_ref, index) {
+        var _ref2 = _slicedToArray(_ref, 2),
+            key = _ref2[0],
+            value = _ref2[1];
 
         var model = new Date();
 
@@ -3057,19 +2925,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           _this4.form[key] = date;
         }
       });
-      this.form.province = this.province.name;
-      this.form.canton = this.canton.name;
+      this.form.province = this.province;
+      this.form.canton = this.canton;
       this.form.consumption_data_table = this.consumption_data_table;
+      console.log(this.province);
+      console.log(this.canton);
       console.log(this.form);
       axios.post("/residents/add-resident", this.form).then(function (response) {
-        console.log(response);
-
-        _this4.$toast.add({
-          severity: 'success',
-          summary: 'Operación exitosa',
-          detail: 'Residente Registrado',
-          life: 3000
-        });
+        console.log(response); // this.$toast.add({severity:'success', summary: 'Operación exitosa', detail:'Residente Registrado', life: 3000});
 
         _this4.clearForm();
 
@@ -3141,7 +3004,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         occupational_therapy: null,
         group_sessions: null,
         others: null,
-        commentaries: null
+        commentaries: null,
+        image: ''
+      };
+    },
+    getImage: function getImage(e) {
+      var _this5 = this;
+
+      var image = e.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(image);
+
+      reader.onload = function (e) {
+        _this5.form.image = e.target.result;
       };
     }
   },
@@ -3153,40 +3028,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   watch: {
     province: function province(newValue) {
-      var _this5 = this;
+      var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        var result;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                console.log(newValue);
-                _context3.next = 3;
-                return axios.get("https://ubicaciones.paginasweb.cr/provincia/".concat(_this5.province.index, "/cantones.json"));
+                if (newValue == 'San José') {
+                  _this6.listCanton = _this6.cantonesData[0].catones;
+                }
 
-              case 3:
-                result = _context3.sent;
-                _this5.cantones = [];
-                _context3.t0 = Object;
-                _context3.next = 8;
-                return result.data;
+                if (newValue == 'Alajuela') {
+                  _this6.listCanton = _this6.cantonesData[1].catones;
+                }
 
-              case 8:
-                _context3.t1 = _context3.sent;
+                if (newValue == 'Cartago') {
+                  _this6.listCanton = _this6.cantonesData[2].catones;
+                }
 
-                _context3.t0.entries.call(_context3.t0, _context3.t1).forEach(function (_ref5) {
-                  var _ref6 = _slicedToArray(_ref5, 2),
-                      index = _ref6[0],
-                      value = _ref6[1];
+                if (newValue == 'Heredia') {
+                  _this6.listCanton = _this6.cantonesData[3].catones;
+                }
 
-                  _this5.cantones.push({
-                    name: value,
-                    index: index
-                  });
-                });
+                if (newValue == 'Guanacaste') {
+                  _this6.listCanton = _this6.cantonesData[4].catones;
+                }
 
-              case 10:
+                if (newValue == 'Puntarenas') {
+                  _this6.listCanton = _this6.cantonesData[5].catones;
+                }
+
+                if (newValue == 'Limón') {
+                  _this6.listCanton = _this6.cantonesData[6].catones;
+                }
+
+              case 7:
               case "end":
                 return _context3.stop();
             }
@@ -3213,6 +3090,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var _utils_cantones_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/cantones.js */ "./resources/js/utils/cantones.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3878,9 +3756,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'ResidentDialogEdit',
+  name: 'ResidentDialogDetail',
   props: ['resident'],
   components: {
     Field: vee_validate__WEBPACK_IMPORTED_MODULE_1__.Field
@@ -3900,6 +3781,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       years: [],
       province: {},
       canton: {},
+      listCanton: [],
+      cantonesData: _utils_cantones_js__WEBPACK_IMPORTED_MODULE_2__.cantonesData,
       consumption_data_table: [{
         substance: '',
         start_year: '',
@@ -3973,7 +3856,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         occupational_therapy: this.resident.occupational_therapy,
         group_sessions: this.resident.group_sessions,
         others: this.resident.others,
-        commentaries: this.resident.commentaries
+        commentaries: this.resident.commentaries,
+        image: this.resident.photo
       },
       occupation: ['Administrador', 'Agricultor', 'Amo de Casa', 'Área Salud', 'Bodeguero', 'Call Center', 'Chofer', 'Cocinero', 'Construcción', 'Dependiente', 'Electricista', 'Guarda', 'Ingeniero', 'Lava Carros', 'Mecánico', 'Mensajero', 'Peón', 'Policía', 'Propietario', 'Soldador', 'Taxista', 'Técnico', 'Venta Ambulante', 'Otro'],
       kind_resident: ['Propia', 'Alquilada', 'Familiar o conocido', 'Precario', 'Vía pública', 'Centro internamiento', 'Otro'],
@@ -3989,8 +3873,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               console.log(JSON.parse(_this.resident.consumption_data_table));
+              _this.provinces = ['San José', 'Alajuela', 'Cartago', 'Heredia', 'Guanacaste', 'Puntarenas', 'Limón'];
 
-            case 1:
+              if (_this.form.province == 'San José') {
+                _this.listCanton = _this.cantonesData[0].catones;
+              }
+
+              if (_this.form.province == 'Alajuela') {
+                _this.listCanton = _this.cantonesData[1].catones;
+              }
+
+              if (_this.form.province == 'Cartago') {
+                _this.listCanton = _this.cantonesData[2].catones;
+              }
+
+              if (_this.form.province == 'Heredia') {
+                _this.listCanton = _this.cantonesData[3].catones;
+              }
+
+              if (_this.form.province == 'Guanacaste') {
+                _this.listCanton = _this.cantonesData[4].catones;
+              }
+
+              if (_this.form.province == 'Puntarenas') {
+                _this.listCanton = _this.cantonesData[5].catones;
+              }
+
+              if (_this.form.province == 'Limón') {
+                _this.listCanton = _this.cantonesData[6].catones;
+              }
+
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -4022,8 +3935,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-
-
+/* harmony import */ var _utils_cantones_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/cantones.js */ "./resources/js/utils/cantones.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4035,6 +3947,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -4559,110 +4473,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ResidentDialogEdit',
@@ -4685,6 +4496,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       years: [],
       province: {},
       canton: {},
+      listCanton: [],
+      cantonesData: _utils_cantones_js__WEBPACK_IMPORTED_MODULE_2__.cantonesData,
       consumption_data_table: JSON.parse(this.resident.consumption_data_table),
       egress_reason_law: ['Cumplió', 'Abandonó o Fuga', 'Expulsión', 'Traslado', 'Otro'],
       form: {
@@ -4751,7 +4564,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         occupational_therapy: this.resident.occupational_therapy,
         group_sessions: this.resident.group_sessions,
         others: this.resident.others,
-        commentaries: this.resident.commentaries
+        commentaries: this.resident.commentaries,
+        image: this.resident.photo
       },
       occupation: ['Administrador', 'Agricultor', 'Amo de Casa', 'Área Salud', 'Bodeguero', 'Call Center', 'Chofer', 'Cocinero', 'Construcción', 'Dependiente', 'Electricista', 'Guarda', 'Ingeniero', 'Lava Carros', 'Mecánico', 'Mensajero', 'Peón', 'Policía', 'Propietario', 'Soldador', 'Taxista', 'Técnico', 'Venta Ambulante', 'Otro'],
       kind_resident: ['Propia', 'Alquilada', 'Familiar o conocido', 'Precario', 'Vía pública', 'Centro internamiento', 'Otro'],
@@ -4762,7 +4576,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var year, index, result;
+      var year, index;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -4774,50 +4588,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.years.push(index);
               }
 
-              _context.prev = 3;
-              _context.next = 6;
-              return axios.get('https://ubicaciones.paginasweb.cr/provincias.json');
+              _this.provinces = ['San José', 'Alajuela', 'Cartago', 'Heredia', 'Guanacaste', 'Puntarenas', 'Limón'];
 
-            case 6:
-              result = _context.sent;
-              _context.t0 = Object;
-              _context.next = 10;
-              return result.data;
+              if (_this.form.province == 'San José') {
+                _this.listCanton = _this.cantonesData[0].catones;
+              }
 
-            case 10:
-              _context.t1 = _context.sent;
+              if (_this.form.province == 'Alajuela') {
+                _this.listCanton = _this.cantonesData[1].catones;
+              }
 
-              _context.t0.entries.call(_context.t0, _context.t1).forEach(function (_ref) {
-                var _ref2 = _slicedToArray(_ref, 2),
-                    index = _ref2[0],
-                    value = _ref2[1];
+              if (_this.form.province == 'Cartago') {
+                _this.listCanton = _this.cantonesData[2].catones;
+              }
 
-                _this.provinces.push({
-                  name: value,
-                  index: index
-                });
-              });
+              if (_this.form.province == 'Heredia') {
+                _this.listCanton = _this.cantonesData[3].catones;
+              }
 
-              _context.next = 17;
-              break;
+              if (_this.form.province == 'Guanacaste') {
+                _this.listCanton = _this.cantonesData[4].catones;
+              }
 
-            case 14:
-              _context.prev = 14;
-              _context.t2 = _context["catch"](3);
+              if (_this.form.province == 'Puntarenas') {
+                _this.listCanton = _this.cantonesData[5].catones;
+              }
 
-              _this.$toast.add({
-                severity: 'error',
-                summary: 'Hay un error con el sitema, contacte a soporte',
-                detail: 'No se pueden cargar las provincias',
-                life: 3000
-              });
+              if (_this.form.province == 'Limón') {
+                _this.listCanton = _this.cantonesData[6].catones;
+              }
 
-            case 17:
+            case 11:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[3, 14]]);
+      }, _callee);
     }))();
   },
   methods: {
@@ -4894,10 +4700,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       this.form.consumption_data_table = JSON.stringify(this.consumption_data_table);
       var result = Object.entries(this.form);
-      result.forEach(function (_ref3, index) {
-        var _ref4 = _slicedToArray(_ref3, 2),
-            key = _ref4[0],
-            value = _ref4[1];
+      result.forEach(function (_ref, index) {
+        var _ref2 = _slicedToArray(_ref, 2),
+            key = _ref2[0],
+            value = _ref2[1];
 
         var model = new Date();
 
@@ -4908,9 +4714,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           console.log(key, date);
           _this4.form[key] = date;
         }
-      });
-      this.form.province = this.province.name;
-      this.form.canton = this.canton.name;
+      }); // this.form.province = this.province;
+      // this.form.canton = this.canton;
+
       console.log(this.form);
       axios.put('/residents/update/' + this.resident.id, this.form).then(function (response) {
         _this4.$toast.add({
@@ -4918,9 +4724,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           summary: 'Operación exitosa',
           detail: 'Residente Actualizado',
           life: 3000
-        });
+        }); // console.log(response)
 
-        console.log(response);
+
         window.location = location.origin + "/residents"; // this.clearForm();
       })["catch"](function (error) {});
     },
@@ -4991,6 +4797,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         others: null,
         commentaries: null
       };
+    },
+    getImage: function getImage(e) {
+      var _this5 = this;
+
+      var image = e.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(image);
+
+      reader.onload = function (e) {
+        _this5.form.image = e.target.result;
+      };
     }
   },
   computed: {
@@ -5000,41 +4817,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   watch: {
-    province: function province(newValue) {
-      var _this5 = this;
+    'form.province': function formProvince(newValue) {
+      var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        var result;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                console.log(newValue);
-                _context3.next = 3;
-                return axios.get("https://ubicaciones.paginasweb.cr/provincia/".concat(_this5.province.index, "/cantones.json"));
+                if (newValue == 'San José') {
+                  _this6.listCanton = _this6.cantonesData[0].catones;
+                }
 
-              case 3:
-                result = _context3.sent;
-                _this5.cantones = [];
-                _context3.t0 = Object;
-                _context3.next = 8;
-                return result.data;
+                if (newValue == 'Alajuela') {
+                  _this6.listCanton = _this6.cantonesData[1].catones;
+                }
 
-              case 8:
-                _context3.t1 = _context3.sent;
+                if (newValue == 'Cartago') {
+                  _this6.listCanton = _this6.cantonesData[2].catones;
+                }
 
-                _context3.t0.entries.call(_context3.t0, _context3.t1).forEach(function (_ref5) {
-                  var _ref6 = _slicedToArray(_ref5, 2),
-                      index = _ref6[0],
-                      value = _ref6[1];
+                if (newValue == 'Heredia') {
+                  _this6.listCanton = _this6.cantonesData[3].catones;
+                }
 
-                  _this5.cantones.push({
-                    name: value,
-                    index: index
-                  });
-                });
+                if (newValue == 'Guanacaste') {
+                  _this6.listCanton = _this6.cantonesData[4].catones;
+                }
 
-              case 10:
+                if (newValue == 'Puntarenas') {
+                  _this6.listCanton = _this6.cantonesData[5].catones;
+                }
+
+                if (newValue == 'Limón') {
+                  _this6.listCanton = _this6.cantonesData[6].catones;
+                }
+
+              case 7:
               case "end":
                 return _context3.stop();
             }
@@ -5254,6 +5073,42 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/utils/cantones.js":
+/*!****************************************!*\
+  !*** ./resources/js/utils/cantones.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "cantonesData": () => (/* binding */ cantonesData)
+/* harmony export */ });
+var cantonesData = [{
+  "provincia": "San José",
+  "catones": ["San José", "Escazú", "Desamparados", "Puriscal", "Tarrazú", "Aserrí", "Mora", "Goicoechea", "Santa Ana", "Alajuelita", "Vázquez de Coronado", "Acosta", "Tibás", "Moravia", "Montes de Oca", "Turrubares", "Dota", "Curridabat", "Pérez Zeledón", "León Cortés"]
+}, {
+  "provincia": "Alajuela",
+  "catones": ["Alajuela", "San Ramón", "Grecia", "San Mateo", "Atenas", "Naranjo", "Palmares", "Poás", "Orotina", "San Carlos", "Zarcero", "Valverde Vega", "Upala", "Los Chiles", "Guatuso"]
+}, {
+  "provincia": "Cartago",
+  "catones": ["Cartago", "Paraíso", "La Unión", "Jiménez", "Turrialba", "Alvarado", "Oreamuno", "El Guarco"]
+}, {
+  "provincia": "Heredia",
+  "catones": ["Heredia", "Barva", "Santo Domingo", "Santa Bárbara", "San Rafael", "San Isidro", "Belén", "Flores", "San Pablo", "Sarapiquí"]
+}, {
+  "provincia": "Guanacaste",
+  "catones": ["Liberia", "Nicoya", "Santa Cruz", "Bagaces", "Carrillo", "Cañas", "Abangares", "Tilarán", "Nandayure", "La Cruz", "Hojancha"]
+}, {
+  "provincia": "Puntarenas",
+  "catones": ["Puntarenas", "Esparza", "Buenos Aires", "Montes de Oro", "Osa", "Quepos", "Golfito", "Coto Brus", "Parrita", "Corredores", "Garabito"]
+}, {
+  "provincia": "Limón",
+  "catones": ["Limón", "Pococí", "Siquirres", "Talamanca", "Matina", "Guácimo"]
+}];
 
 /***/ }),
 
@@ -67615,11 +67470,7 @@ var render = function() {
                 fn: function(slotProps) {
                   return [
                     _c("Avatar", {
-                      attrs: {
-                        image:
-                          "https://maristasperu.pe/wp-content/uploads/2016/01/tutor-8.jpg",
-                        size: "xlarge"
-                      }
+                      attrs: { image: slotProps.data.photo, size: "xlarge" }
                     })
                   ]
                 }
@@ -67730,6 +67581,42 @@ var render = function() {
             _vm._v(" "),
             _vm._m(1),
             _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "mb-3",
+                staticStyle: {
+                  display: "flex",
+                  "align-items": "center",
+                  "justify-content": "center"
+                }
+              },
+              [
+                _c("input", {
+                  ref: "image",
+                  staticClass: "common-input",
+                  attrs: {
+                    type: "file",
+                    id: "image",
+                    placeholder: "Imagen corporativa",
+                    accept: "image/*"
+                  },
+                  on: { change: _vm.getImage }
+                }),
+                _vm._v(" "),
+                !!_vm.form.image
+                  ? _c("img", {
+                      staticClass: "avatar",
+                      attrs: {
+                        src: _vm.form.image,
+                        alt: "Image",
+                        width: "50px"
+                      }
+                    })
+                  : _vm._e()
+              ]
+            ),
+            _vm._v(" "),
             _c("div", { staticClass: "p-fluid p-formgrid p-grid" }, [
               _c(
                 "div",
@@ -67809,14 +67696,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputText", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("second_surname") },
                     attrs: {
                       id: "second_surname",
                       name: "second_surname",
                       type: "text",
-                      placeholder: "Segundo Apellido",
-                      "data-vv-rules": "required"
+                      placeholder: "Segundo Apellido"
                     },
                     model: {
                       value: _vm.form.second_surname,
@@ -67867,14 +67751,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputText", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("identification") },
                     attrs: {
                       id: "identification",
                       type: "text",
                       placeholder: "Identificación",
-                      name: "identification",
-                      "data-vv-rules": "required"
+                      name: "identification"
                     },
                     model: {
                       value: _vm.form.identification,
@@ -67893,12 +67774,9 @@ var render = function() {
                 { staticClass: "p-field p-col" },
                 [
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("generes") },
                     attrs: {
                       options: _vm.generes,
                       name: "generes",
-                      "data-vv-rules": "required",
                       placeholder: "Sexo"
                     },
                     model: {
@@ -67926,14 +67804,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputNumber", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("record") },
                     attrs: {
                       format: false,
                       id: "record",
                       placeholder: "Número de expediente",
-                      name: "record",
-                      "data-vv-rules": "required"
+                      name: "record"
                     },
                     model: {
                       value: _vm.form.record,
@@ -67941,34 +67816,6 @@ var render = function() {
                         _vm.$set(_vm.form, "record", $$v)
                       },
                       expression: "form.record"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.record,
-                        expression: "form.record"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("record") },
-                    attrs: {
-                      type: "hidden",
-                      placeholder: "Número de expediente",
-                      name: "record",
-                      "data-vv-rules": "required"
-                    },
-                    domProps: { value: _vm.form.record },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "record", $event.target.value)
-                      }
                     }
                   })
                 ],
@@ -67986,16 +67833,13 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputNumber", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("age") },
                     attrs: {
                       format: false,
                       min: 0,
                       max: 100,
                       id: "age",
                       placeholder: "Edad",
-                      name: "age",
-                      "data-vv-rules": "required"
+                      name: "age"
                     },
                     model: {
                       value: _vm.form.age,
@@ -68003,37 +67847,6 @@ var render = function() {
                         _vm.$set(_vm.form, "age", $$v)
                       },
                       expression: "form.age"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.age,
-                        expression: "form.age"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("age") },
-                    attrs: {
-                      type: "hidden",
-                      format: false,
-                      min: 0,
-                      max: 100,
-                      placeholder: "Edad",
-                      name: "age",
-                      "data-vv-rules": "required"
-                    },
-                    domProps: { value: _vm.form.age },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "age", $event.target.value)
-                      }
                     }
                   })
                 ],
@@ -68051,14 +67864,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputText", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("religion") },
                     attrs: {
                       id: "religion",
                       type: "text",
                       placeholder: "Creencia Religiosa",
-                      name: "religion",
-                      "data-vv-rules": "required"
+                      name: "religion"
                     },
                     model: {
                       value: _vm.form.religion,
@@ -68085,16 +67895,12 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Calendar", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("date_birth") },
                     attrs: {
                       dateFormat: "dd-mm-yy",
                       showIcon: true,
                       yearNavigator: true,
                       yearRange: _vm.yearRange,
                       id: "date_birth",
-                      name: "date_birth",
-                      "data-vv-rules": "required",
                       placeholder: "Fecha de Nacimiento"
                     },
                     model: {
@@ -68103,34 +67909,6 @@ var render = function() {
                         _vm.$set(_vm.form, "date_birth", $$v)
                       },
                       expression: "form.date_birth"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.date_birth,
-                        expression: "form.date_birth"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("date_birth") },
-                    attrs: {
-                      type: "hidden",
-                      name: "date_birth",
-                      "data-vv-rules": "required",
-                      placeholder: "Fecha de Nacimiento"
-                    },
-                    domProps: { value: _vm.form.date_birth },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "date_birth", $event.target.value)
-                      }
                     }
                   })
                 ],
@@ -68148,12 +67926,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("origin") },
                     attrs: {
                       options: _vm.origins,
                       name: "origin",
-                      "data-vv-rules": "required",
                       placeholder: "Procedencia"
                     },
                     model: {
@@ -68179,12 +67954,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("status") },
                     attrs: {
                       options: _vm.statusList,
                       name: "status",
-                      "data-vv-rules": "required",
                       placeholder: "Estatus"
                     },
                     model: {
@@ -68219,13 +67991,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Calendar", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("admission_date") },
                     attrs: {
                       showIcon: true,
                       id: "admission_date",
                       name: "admission_date",
-                      "data-vv-rules": "required",
                       placeholder: "Fecha de ingreso"
                     },
                     model: {
@@ -68244,14 +68013,11 @@ var render = function() {
                         rawName: "v-model",
                         value: _vm.form.admission_date,
                         expression: "form.admission_date"
-                      },
-                      { name: "validate", rawName: "v-validate" }
+                      }
                     ],
-                    class: { "p-invalid": _vm.errors.has("admission_date") },
                     attrs: {
                       type: "hidden",
                       name: "admission_date",
-                      "data-vv-rules": "required",
                       placeholder: "Fecha de Nacimiento"
                     },
                     domProps: { value: _vm.form.admission_date },
@@ -68283,13 +68049,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Calendar", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("egress_date") },
                     attrs: {
                       showIcon: true,
                       id: "egress_date",
                       name: "egress_date",
-                      "data-vv-rules": "required",
                       placeholder: "Fecha de egreso"
                     },
                     model: {
@@ -68308,14 +68071,11 @@ var render = function() {
                         rawName: "v-model",
                         value: _vm.form.egress_date,
                         expression: "form.egress_date"
-                      },
-                      { name: "validate", rawName: "v-validate" }
+                      }
                     ],
-                    class: { "p-invalid": _vm.errors.has("egress_date") },
                     attrs: {
                       type: "hidden",
                       name: "egress_date",
-                      "data-vv-rules": "required",
                       placeholder: "Fecha de Nacimiento"
                     },
                     domProps: { value: _vm.form.egress_date },
@@ -68348,15 +68108,12 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Calendar", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("entry_hour") },
                     attrs: {
                       showIcon: true,
                       timeOnly: true,
                       hourFormat: "12",
                       id: "entry_hour",
                       name: "entry_hour",
-                      "data-vv-rules": "required",
                       placeholder: "Hora de ingreso"
                     },
                     model: {
@@ -68365,34 +68122,6 @@ var render = function() {
                         _vm.$set(_vm.form, "entry_hour", $$v)
                       },
                       expression: "form.entry_hour"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.entry_hour,
-                        expression: "form.entry_hour"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("entry_hour") },
-                    attrs: {
-                      type: "hidden",
-                      name: "entry_hour",
-                      "data-vv-rules": "required",
-                      placeholder: "Fecha de Nacimiento"
-                    },
-                    domProps: { value: _vm.form.entry_hour },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "entry_hour", $event.target.value)
-                      }
                     }
                   })
                 ],
@@ -68410,15 +68139,12 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Calendar", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("egress_hour") },
                     attrs: {
                       showIcon: true,
                       timeOnly: true,
                       hourFormat: "12",
                       id: "egress_hour",
                       name: "egress_hour",
-                      "data-vv-rules": "required",
                       placeholder: "Hora de egreso"
                     },
                     model: {
@@ -68427,34 +68153,6 @@ var render = function() {
                         _vm.$set(_vm.form, "egress_hour", $$v)
                       },
                       expression: "form.egress_hour"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.egress_hour,
-                        expression: "form.egress_hour"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("egress_hour") },
-                    attrs: {
-                      type: "hidden",
-                      name: "egress_hour",
-                      "data-vv-rules": "required",
-                      placeholder: "Fecha de Nacimiento"
-                    },
-                    domProps: { value: _vm.form.egress_hour },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "egress_hour", $event.target.value)
-                      }
                     }
                   })
                 ],
@@ -68477,12 +68175,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("first_treatment") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "first_treatment",
-                      "data-vv-rules": "required",
                       placeholder: "¿Primer tratamiento?"
                     },
                     model: {
@@ -68511,14 +68206,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: {
-                      "p-invalid": _vm.errors.has("another_center_entered")
-                    },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "another_center_entered",
-                      "data-vv-rules": "required",
                       placeholder: "¿Ingresó a otro centro este año?"
                     },
                     model: {
@@ -68547,13 +68237,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputNumber", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("times_he_entered") },
                     attrs: {
                       id: "times_he_entered",
                       placeholder: "Ingrese la cantidad",
-                      name: "times_he_entered",
-                      "data-vv-rules": "required"
+                      name: "times_he_entered"
                     },
                     model: {
                       value: _vm.form.times_he_entered,
@@ -68561,39 +68248,6 @@ var render = function() {
                         _vm.$set(_vm.form, "times_he_entered", $$v)
                       },
                       expression: "form.times_he_entered"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.times_he_entered,
-                        expression: "form.times_he_entered"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("times_he_entered") },
-                    attrs: {
-                      type: "hidden",
-                      id: "times_he_entered",
-                      placeholder: "Ingrese la cantidad",
-                      name: "times_he_entered",
-                      "data-vv-rules": "required"
-                    },
-                    domProps: { value: _vm.form.times_he_entered },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "times_he_entered",
-                          $event.target.value
-                        )
-                      }
                     }
                   })
                 ],
@@ -68620,12 +68274,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("marital_status") },
                     attrs: {
                       options: _vm.marital_status,
                       name: "marital_status",
-                      "data-vv-rules": "required",
                       placeholder: "Estado Civil"
                     },
                     model: {
@@ -68654,12 +68305,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("have_children") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "have_children",
-                      "data-vv-rules": "required",
                       placeholder: "¿Tiene hijos?"
                     },
                     model: {
@@ -68688,13 +68336,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputNumber", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("children_number") },
                     attrs: {
                       id: "children_number",
                       placeholder: "Cantidad de hijos",
-                      name: "children_number",
-                      "data-vv-rules": "required"
+                      name: "children_number"
                     },
                     model: {
                       value: _vm.form.children_number,
@@ -68702,38 +68347,6 @@ var render = function() {
                         _vm.$set(_vm.form, "children_number", $$v)
                       },
                       expression: "form.children_number"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.children_number,
-                        expression: "form.children_number"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("children_number") },
-                    attrs: {
-                      type: "hidden",
-                      placeholder: "Cantidad de hijos",
-                      name: "children_number",
-                      "data-vv-rules": "required"
-                    },
-                    domProps: { value: _vm.form.children_number },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "children_number",
-                          $event.target.value
-                        )
-                      }
                     }
                   })
                 ],
@@ -68753,12 +68366,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("job") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "job",
-                      "data-vv-rules": "required",
                       placeholder: "¿Trabajo remunerado?"
                     },
                     model: {
@@ -68784,12 +68394,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("occupation") },
                     attrs: {
                       options: _vm.occupation,
                       name: "occupation",
-                      "data-vv-rules": "required",
                       placeholder: "Ocupación"
                     },
                     model: {
@@ -68815,12 +68422,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("study") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "study",
-                      "data-vv-rules": "required",
                       placeholder: "¿Estudia?"
                     },
                     model: {
@@ -68851,12 +68455,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("educational_level") },
                     attrs: {
                       options: _vm.educational_level,
                       name: "educational_level",
-                      "data-vv-rules": "required",
                       placeholder: "Máximo nivel de estudio"
                     },
                     model: {
@@ -68885,12 +68486,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("kind_resident") },
                     attrs: {
                       options: _vm.kind_resident,
                       name: "kind_resident",
-                      "data-vv-rules": "required",
                       placeholder: "Tipo de residencia"
                     },
                     model: {
@@ -68916,14 +68514,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputNumber", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("cellphone") },
                     attrs: {
                       format: false,
                       id: "cellphone",
                       placeholder: "Número de teléfono",
-                      name: "cellphone",
-                      "data-vv-rules": "required"
+                      name: "cellphone"
                     },
                     model: {
                       value: _vm.form.cellphone,
@@ -68931,35 +68526,6 @@ var render = function() {
                         _vm.$set(_vm.form, "cellphone", $$v)
                       },
                       expression: "form.cellphone"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.cellphone,
-                        expression: "form.cellphone"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("cellphone") },
-                    attrs: {
-                      type: "hidden",
-                      format: false,
-                      placeholder: "Número de teléfono",
-                      name: "cellphone",
-                      "data-vv-rules": "required"
-                    },
-                    domProps: { value: _vm.form.cellphone },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "cellphone", $event.target.value)
-                      }
                     }
                   })
                 ],
@@ -68979,12 +68545,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("on_street") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "on_street",
-                      "data-vv-rules": "required",
                       placeholder: "Se encuentra en calle"
                     },
                     model: {
@@ -69010,12 +68573,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("referral_from_cai") },
                     attrs: {
                       options: _vm.referral_from_cai,
                       name: "referral_from_cai",
-                      "data-vv-rules": "required",
                       placeholder: "¿De que CAID viene referido?"
                     },
                     model: {
@@ -69046,12 +68606,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("destiny") },
                     attrs: {
                       options: _vm.destiny,
                       name: "destiny",
-                      "data-vv-rules": "required",
                       placeholder: "Con destino"
                     },
                     model: {
@@ -69080,13 +68637,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputText", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("destiny_reason") },
                     attrs: {
                       id: "destiny_reason",
                       placeholder: "Razón",
-                      name: "destiny_reason",
-                      "data-vv-rules": "required"
+                      name: "destiny_reason"
                     },
                     model: {
                       value: _vm.form.destiny_reason,
@@ -69115,7 +68669,7 @@ var render = function() {
                   _c("Dropdown", {
                     attrs: {
                       options: _vm.provinces,
-                      optionLabel: "name",
+                      optionLabel: "",
                       placeholder: "Provincia"
                     },
                     model: {
@@ -69142,8 +68696,8 @@ var render = function() {
                   _vm._v(" "),
                   _c("Dropdown", {
                     attrs: {
-                      options: _vm.cantones,
-                      optionLabel: "name",
+                      options: _vm.listCanton,
+                      optionLabel: "",
                       placeholder: "Cantón"
                     },
                     model: {
@@ -69171,13 +68725,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputText", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("address") },
                     attrs: {
                       id: "address",
                       placeholder: "Dirección",
-                      name: "address",
-                      "data-vv-rules": "required"
+                      name: "address"
                     },
                     model: {
                       value: _vm.form.address,
@@ -69211,15 +68762,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputText", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: {
-                      "p-invalid": _vm.errors.has("psychiatric_diagnosis")
-                    },
                     attrs: {
                       id: "psychiatric_diagnosis",
                       placeholder: "Diagnóstico psiquiátrico",
-                      name: "psychiatric_diagnosis",
-                      "data-vv-rules": "required"
+                      name: "psychiatric_diagnosis"
                     },
                     model: {
                       value: _vm.form.psychiatric_diagnosis,
@@ -69247,15 +68793,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputText", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: {
-                      "p-invalid": _vm.errors.has("drug_dependence_diagnosis")
-                    },
                     attrs: {
                       id: "drug_dependence_diagnosis",
                       placeholder: "Diagnóstico farmacodependencia",
-                      name: "drug_dependence_diagnosis",
-                      "data-vv-rules": "required"
+                      name: "drug_dependence_diagnosis"
                     },
                     model: {
                       value: _vm.form.drug_dependence_diagnosis,
@@ -69278,35 +68819,49 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.consumption_data_table, function(item, index) {
                     return _c("tr", { key: index }, [
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "td",
+                        [
+                          _c("InputText", {
+                            directives: [
+                              { name: "validate", rawName: "v-validate" }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "p-invalid": _vm.errors.has("substance" + index)
+                            },
+                            attrs: {
+                              type: "text",
+                              name: "substance" + index,
+                              "data-vv-rules": "required"
+                            },
+                            model: {
                               value: item.substance,
+                              callback: function($$v) {
+                                _vm.$set(item, "substance", $$v)
+                              },
                               expression: "item.substance"
                             }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: item.substance },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(item, "substance", $event.target.value)
-                            }
-                          }
-                        })
-                      ]),
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c(
                         "td",
                         [
                           _c("Dropdown", {
-                            attrs: { options: _vm.years },
+                            directives: [
+                              { name: "validate", rawName: "v-validate" }
+                            ],
+                            class: {
+                              "p-invalid": _vm.errors.has("start_year" + index)
+                            },
+                            attrs: {
+                              options: _vm.years,
+                              name: "start_year" + index,
+                              "data-vv-rules": "required"
+                            },
                             model: {
                               value: item.start_year,
                               callback: function($$v) {
@@ -69319,93 +68874,111 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "td",
+                        [
+                          _c("InputText", {
+                            directives: [
+                              { name: "validate", rawName: "v-validate" }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "p-invalid": _vm.errors.has(
+                                "frequency_consumption" + index
+                              )
+                            },
+                            attrs: {
+                              type: "text",
+                              name: "frequency_consumption" + index,
+                              "data-vv-rules": "required"
+                            },
+                            model: {
                               value: item.frequency_consumption,
+                              callback: function($$v) {
+                                _vm.$set(item, "frequency_consumption", $$v)
+                              },
                               expression: "item.frequency_consumption"
                             }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: item.frequency_consumption },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                item,
-                                "frequency_consumption",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]),
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "td",
+                        [
+                          _c("InputText", {
+                            directives: [
+                              { name: "validate", rawName: "v-validate" }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "p-invalid": _vm.errors.has("usual_dose" + index)
+                            },
+                            attrs: {
+                              type: "text",
+                              name: "usual_dose" + index,
+                              "data-vv-rules": "required"
+                            },
+                            model: {
                               value: item.usual_dose,
+                              callback: function($$v) {
+                                _vm.$set(item, "usual_dose", $$v)
+                              },
                               expression: "item.usual_dose"
                             }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: item.usual_dose },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(item, "usual_dose", $event.target.value)
-                            }
-                          }
-                        })
-                      ]),
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "td",
+                        [
+                          _c("InputText", {
+                            directives: [
+                              { name: "validate", rawName: "v-validate" }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "p-invalid": _vm.errors.has(
+                                "usual_administratio_way" + index
+                              )
+                            },
+                            attrs: {
+                              type: "text",
+                              name: "usual_administratio_way" + index,
+                              "data-vv-rules": "required"
+                            },
+                            model: {
                               value: item.usual_administratio_way,
+                              callback: function($$v) {
+                                _vm.$set(item, "usual_administratio_way", $$v)
+                              },
                               expression: "item.usual_administratio_way"
                             }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: item.usual_administratio_way },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                item,
-                                "usual_administratio_way",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]),
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c(
                         "td",
                         [
                           _c("Calendar", {
+                            directives: [
+                              { name: "validate", rawName: "v-validate" }
+                            ],
+                            class: {
+                              "p-invalid": _vm.errors.has(
+                                "last_consumption_date" + index
+                              )
+                            },
                             attrs: {
                               showIcon: true,
-                              id: "last_consumption_date"
+                              id: "last_consumption_date",
+                              name: "last_consumption_date" + index,
+                              "data-vv-rules": "required"
                             },
                             model: {
                               value: item.last_consumption_date,
@@ -69413,6 +68986,41 @@ var render = function() {
                                 _vm.$set(item, "last_consumption_date", $$v)
                               },
                               expression: "item.last_consumption_date"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: item.last_consumption_date,
+                                expression: "item.last_consumption_date"
+                              },
+                              { name: "validate", rawName: "v-validate" }
+                            ],
+                            class: {
+                              "p-invalid": _vm.errors.has(
+                                "last_consumption_date" + index
+                              )
+                            },
+                            attrs: {
+                              type: "hidden",
+                              name: "last_consumption_date" + index,
+                              "data-vv-rules": "required"
+                            },
+                            domProps: { value: item.last_consumption_date },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  item,
+                                  "last_consumption_date",
+                                  $event.target.value
+                                )
+                              }
                             }
                           })
                         ],
@@ -69474,12 +69082,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("pending_cases") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "pending_cases",
-                      "data-vv-rules": "required",
                       placeholder:
                         "¿Tiene casos pendientes por infringir las leyes?"
                     },
@@ -69509,12 +69114,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("egress") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "egress",
-                      "data-vv-rules": "required",
                       placeholder: "Egreso"
                     },
                     model: {
@@ -69543,12 +69145,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("egress_reason_law") },
                     attrs: {
                       options: _vm.egress_reason_law,
                       name: "egress_reason_law",
-                      "data-vv-rules": "required",
                       placeholder: "Motivo"
                     },
                     model: {
@@ -69581,12 +69180,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("drugs") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "drugs",
-                      "data-vv-rules": "required",
                       placeholder: "Asociadas a las drogas"
                     },
                     model: {
@@ -69615,12 +69211,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("sexual_nature") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "sexual_nature",
-                      "data-vv-rules": "required",
                       placeholder: "De índole sexual"
                     },
                     model: {
@@ -69649,12 +69242,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("against_property") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "against_property",
-                      "data-vv-rules": "required",
                       placeholder: "Contra la propiedad"
                     },
                     model: {
@@ -69685,12 +69275,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("against_life") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "against_life",
-                      "data-vv-rules": "required",
                       placeholder: "Contra la vida"
                     },
                     model: {
@@ -69719,12 +69306,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("others_law") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "others_law",
-                      "data-vv-rules": "required",
                       placeholder: "Otros"
                     },
                     model: {
@@ -69917,6 +69501,24 @@ var render = function() {
             _vm._m(0),
             _vm._v(" "),
             _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "mb-3",
+                staticStyle: {
+                  display: "flex",
+                  "align-items": "center",
+                  "justify-content": "center"
+                }
+              },
+              [
+                _c("Avatar", {
+                  attrs: { image: _vm.form.image, size: "xlarge" }
+                })
+              ],
+              1
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "p-fluid p-formgrid p-grid" }, [
               _c(
@@ -71347,15 +70949,15 @@ var render = function() {
                     attrs: {
                       disabled: "",
                       options: _vm.provinces,
-                      optionLabel: "name",
+                      optionLabel: "",
                       placeholder: "Provincia"
                     },
                     model: {
-                      value: _vm.province,
+                      value: _vm.form.province,
                       callback: function($$v) {
-                        _vm.province = $$v
+                        _vm.$set(_vm.form, "province", $$v)
                       },
-                      expression: "province"
+                      expression: "form.province"
                     }
                   })
                 ],
@@ -71375,16 +70977,16 @@ var render = function() {
                   _c("Dropdown", {
                     attrs: {
                       disabled: "",
-                      options: _vm.cantones,
-                      optionLabel: "name",
+                      options: _vm.listCanton,
+                      optionLabel: "",
                       placeholder: "Cantón"
                     },
                     model: {
-                      value: _vm.canton,
+                      value: _vm.form.canton,
                       callback: function($$v) {
-                        _vm.canton = $$v
+                        _vm.$set(_vm.form, "canton", $$v)
                       },
-                      expression: "canton"
+                      expression: "form.canton"
                     }
                   })
                 ],
@@ -71992,23 +71594,7 @@ var render = function() {
                 1
               )
             ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "text-center" },
-            [
-              _c("Button", {
-                attrs: { label: "Actualizar" },
-                on: {
-                  click: function($event) {
-                    return _vm.validateForm()
-                  }
-                }
-              })
-            ],
-            1
-          )
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -72137,6 +71723,36 @@ var render = function() {
             _vm._v(" "),
             _vm._m(1),
             _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "mb-3",
+                staticStyle: {
+                  display: "flex",
+                  "align-items": "center",
+                  "justify-content": "center"
+                }
+              },
+              [
+                _c("input", {
+                  ref: "image",
+                  staticClass: "common-input",
+                  attrs: {
+                    type: "file",
+                    id: "image",
+                    placeholder: "Imagen corporativa",
+                    accept: "image/*"
+                  },
+                  on: { change: _vm.getImage }
+                }),
+                _vm._v(" "),
+                _c("Avatar", {
+                  attrs: { image: _vm.form.image, size: "xlarge" }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
             _c("div", { staticClass: "p-fluid p-formgrid p-grid" }, [
               _c(
                 "div",
@@ -72216,14 +71832,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputText", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("second_surname") },
                     attrs: {
                       id: "second_surname",
                       name: "second_surname",
                       type: "text",
-                      placeholder: "Segundo Apellido",
-                      "data-vv-rules": "required"
+                      placeholder: "Segundo Apellido"
                     },
                     model: {
                       value: _vm.form.second_surname,
@@ -72274,14 +71887,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputText", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("identification") },
                     attrs: {
                       id: "identification",
                       type: "text",
                       placeholder: "Identificación",
-                      name: "identification",
-                      "data-vv-rules": "required"
+                      name: "identification"
                     },
                     model: {
                       value: _vm.form.identification,
@@ -72300,12 +71910,9 @@ var render = function() {
                 { staticClass: "p-field p-col" },
                 [
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("generes") },
                     attrs: {
                       options: _vm.generes,
                       name: "generes",
-                      "data-vv-rules": "required",
                       placeholder: "Sexo"
                     },
                     model: {
@@ -72333,14 +71940,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputNumber", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("record") },
                     attrs: {
                       format: false,
                       id: "record",
                       placeholder: "Número de expediente",
-                      name: "record",
-                      "data-vv-rules": "required"
+                      name: "record"
                     },
                     model: {
                       value: _vm.form.record,
@@ -72348,34 +71952,6 @@ var render = function() {
                         _vm.$set(_vm.form, "record", $$v)
                       },
                       expression: "form.record"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.record,
-                        expression: "form.record"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("record") },
-                    attrs: {
-                      type: "hidden",
-                      placeholder: "Número de expediente",
-                      name: "record",
-                      "data-vv-rules": "required"
-                    },
-                    domProps: { value: _vm.form.record },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "record", $event.target.value)
-                      }
                     }
                   })
                 ],
@@ -72393,16 +71969,13 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputNumber", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("age") },
                     attrs: {
                       format: false,
                       min: 0,
                       max: 100,
                       id: "age",
                       placeholder: "Edad",
-                      name: "age",
-                      "data-vv-rules": "required"
+                      name: "age"
                     },
                     model: {
                       value: _vm.form.age,
@@ -72410,37 +71983,6 @@ var render = function() {
                         _vm.$set(_vm.form, "age", $$v)
                       },
                       expression: "form.age"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.age,
-                        expression: "form.age"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("age") },
-                    attrs: {
-                      type: "hidden",
-                      format: false,
-                      min: 0,
-                      max: 100,
-                      placeholder: "Edad",
-                      name: "age",
-                      "data-vv-rules": "required"
-                    },
-                    domProps: { value: _vm.form.age },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "age", $event.target.value)
-                      }
                     }
                   })
                 ],
@@ -72458,14 +72000,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputText", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("religion") },
                     attrs: {
                       id: "religion",
                       type: "text",
                       placeholder: "Creencia Religiosa",
-                      name: "religion",
-                      "data-vv-rules": "required"
+                      name: "religion"
                     },
                     model: {
                       value: _vm.form.religion,
@@ -72492,8 +72031,6 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Calendar", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("date_birth") },
                     attrs: {
                       dateFormat: "dd-mm-yy",
                       showIcon: true,
@@ -72501,7 +72038,6 @@ var render = function() {
                       yearRange: _vm.yearRange,
                       id: "date_birth",
                       name: "date_birth",
-                      "data-vv-rules": "required",
                       placeholder: "Fecha de Nacimiento"
                     },
                     model: {
@@ -72510,34 +72046,6 @@ var render = function() {
                         _vm.$set(_vm.form, "date_birth", $$v)
                       },
                       expression: "form.date_birth"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.date_birth,
-                        expression: "form.date_birth"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("date_birth") },
-                    attrs: {
-                      type: "hidden",
-                      name: "date_birth",
-                      "data-vv-rules": "required",
-                      placeholder: "Fecha de Nacimiento"
-                    },
-                    domProps: { value: _vm.form.date_birth },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "date_birth", $event.target.value)
-                      }
                     }
                   })
                 ],
@@ -72555,12 +72063,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("origin") },
                     attrs: {
                       options: _vm.origins,
                       name: "origin",
-                      "data-vv-rules": "required",
                       placeholder: "Procedencia"
                     },
                     model: {
@@ -72586,12 +72091,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("status") },
                     attrs: {
                       options: _vm.statusList,
                       name: "status",
-                      "data-vv-rules": "required",
                       placeholder: "Estatus"
                     },
                     model: {
@@ -72626,13 +72128,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Calendar", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("admission_date") },
                     attrs: {
                       showIcon: true,
                       id: "admission_date",
                       name: "admission_date",
-                      "data-vv-rules": "required",
                       placeholder: "Fecha de ingreso"
                     },
                     model: {
@@ -72651,14 +72150,11 @@ var render = function() {
                         rawName: "v-model",
                         value: _vm.form.admission_date,
                         expression: "form.admission_date"
-                      },
-                      { name: "validate", rawName: "v-validate" }
+                      }
                     ],
-                    class: { "p-invalid": _vm.errors.has("admission_date") },
                     attrs: {
                       type: "hidden",
                       name: "admission_date",
-                      "data-vv-rules": "required",
                       placeholder: "Fecha de Nacimiento"
                     },
                     domProps: { value: _vm.form.admission_date },
@@ -72690,13 +72186,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Calendar", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("egress_date") },
                     attrs: {
                       showIcon: true,
                       id: "egress_date",
                       name: "egress_date",
-                      "data-vv-rules": "required",
                       placeholder: "Fecha de egreso"
                     },
                     model: {
@@ -72715,14 +72208,11 @@ var render = function() {
                         rawName: "v-model",
                         value: _vm.form.egress_date,
                         expression: "form.egress_date"
-                      },
-                      { name: "validate", rawName: "v-validate" }
+                      }
                     ],
-                    class: { "p-invalid": _vm.errors.has("egress_date") },
                     attrs: {
                       type: "hidden",
                       name: "egress_date",
-                      "data-vv-rules": "required",
                       placeholder: "Fecha de Nacimiento"
                     },
                     domProps: { value: _vm.form.egress_date },
@@ -72755,15 +72245,12 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Calendar", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("entry_hour") },
                     attrs: {
                       showIcon: true,
                       timeOnly: true,
                       hourFormat: "12",
                       id: "entry_hour",
                       name: "entry_hour",
-                      "data-vv-rules": "required",
                       placeholder: "Hora de ingreso"
                     },
                     model: {
@@ -72772,34 +72259,6 @@ var render = function() {
                         _vm.$set(_vm.form, "entry_hour", $$v)
                       },
                       expression: "form.entry_hour"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.entry_hour,
-                        expression: "form.entry_hour"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("entry_hour") },
-                    attrs: {
-                      type: "hidden",
-                      name: "entry_hour",
-                      "data-vv-rules": "required",
-                      placeholder: "Fecha de Nacimiento"
-                    },
-                    domProps: { value: _vm.form.entry_hour },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "entry_hour", $event.target.value)
-                      }
                     }
                   })
                 ],
@@ -72817,15 +72276,12 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Calendar", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("egress_hour") },
                     attrs: {
                       showIcon: true,
                       timeOnly: true,
                       hourFormat: "12",
                       id: "egress_hour",
                       name: "egress_hour",
-                      "data-vv-rules": "required",
                       placeholder: "Hora de egreso"
                     },
                     model: {
@@ -72834,34 +72290,6 @@ var render = function() {
                         _vm.$set(_vm.form, "egress_hour", $$v)
                       },
                       expression: "form.egress_hour"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.egress_hour,
-                        expression: "form.egress_hour"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("egress_hour") },
-                    attrs: {
-                      type: "hidden",
-                      name: "egress_hour",
-                      "data-vv-rules": "required",
-                      placeholder: "Fecha de Nacimiento"
-                    },
-                    domProps: { value: _vm.form.egress_hour },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "egress_hour", $event.target.value)
-                      }
                     }
                   })
                 ],
@@ -72884,12 +72312,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("first_treatment") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "first_treatment",
-                      "data-vv-rules": "required",
                       placeholder: "¿Primer tratamiento?"
                     },
                     model: {
@@ -72918,14 +72343,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: {
-                      "p-invalid": _vm.errors.has("another_center_entered")
-                    },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "another_center_entered",
-                      "data-vv-rules": "required",
                       placeholder: "¿Ingresó a otro centro este año?"
                     },
                     model: {
@@ -72954,13 +72374,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputNumber", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("times_he_entered") },
                     attrs: {
                       id: "times_he_entered",
                       placeholder: "Ingrese la cantidad",
-                      name: "times_he_entered",
-                      "data-vv-rules": "required"
+                      name: "times_he_entered"
                     },
                     model: {
                       value: _vm.form.times_he_entered,
@@ -72968,39 +72385,6 @@ var render = function() {
                         _vm.$set(_vm.form, "times_he_entered", $$v)
                       },
                       expression: "form.times_he_entered"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.times_he_entered,
-                        expression: "form.times_he_entered"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("times_he_entered") },
-                    attrs: {
-                      type: "hidden",
-                      id: "times_he_entered",
-                      placeholder: "Ingrese la cantidad",
-                      name: "times_he_entered",
-                      "data-vv-rules": "required"
-                    },
-                    domProps: { value: _vm.form.times_he_entered },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "times_he_entered",
-                          $event.target.value
-                        )
-                      }
                     }
                   })
                 ],
@@ -73027,12 +72411,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("marital_status") },
                     attrs: {
                       options: _vm.marital_status,
                       name: "marital_status",
-                      "data-vv-rules": "required",
                       placeholder: "Estado Civil"
                     },
                     model: {
@@ -73061,12 +72442,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("have_children") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "have_children",
-                      "data-vv-rules": "required",
                       placeholder: "¿Tiene hijos?"
                     },
                     model: {
@@ -73095,13 +72473,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputNumber", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("children_number") },
                     attrs: {
                       id: "children_number",
                       placeholder: "Cantidad de hijos",
-                      name: "children_number",
-                      "data-vv-rules": "required"
+                      name: "children_number"
                     },
                     model: {
                       value: _vm.form.children_number,
@@ -73109,38 +72484,6 @@ var render = function() {
                         _vm.$set(_vm.form, "children_number", $$v)
                       },
                       expression: "form.children_number"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.children_number,
-                        expression: "form.children_number"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("children_number") },
-                    attrs: {
-                      type: "hidden",
-                      placeholder: "Cantidad de hijos",
-                      name: "children_number",
-                      "data-vv-rules": "required"
-                    },
-                    domProps: { value: _vm.form.children_number },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "children_number",
-                          $event.target.value
-                        )
-                      }
                     }
                   })
                 ],
@@ -73160,12 +72503,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("job") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "job",
-                      "data-vv-rules": "required",
                       placeholder: "¿Trabajo remunerado?"
                     },
                     model: {
@@ -73191,12 +72531,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("occupation") },
                     attrs: {
                       options: _vm.occupation,
                       name: "occupation",
-                      "data-vv-rules": "required",
                       placeholder: "Ocupación"
                     },
                     model: {
@@ -73222,12 +72559,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("study") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "study",
-                      "data-vv-rules": "required",
                       placeholder: "¿Estudia?"
                     },
                     model: {
@@ -73258,12 +72592,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("educational_level") },
                     attrs: {
                       options: _vm.educational_level,
                       name: "educational_level",
-                      "data-vv-rules": "required",
                       placeholder: "Máximo nivel de estudio"
                     },
                     model: {
@@ -73292,12 +72623,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("kind_resident") },
                     attrs: {
                       options: _vm.kind_resident,
                       name: "kind_resident",
-                      "data-vv-rules": "required",
                       placeholder: "Tipo de residencia"
                     },
                     model: {
@@ -73323,14 +72651,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputNumber", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("cellphone") },
                     attrs: {
                       format: false,
                       id: "cellphone",
                       placeholder: "Número de teléfono",
-                      name: "cellphone",
-                      "data-vv-rules": "required"
+                      name: "cellphone"
                     },
                     model: {
                       value: _vm.form.cellphone,
@@ -73338,35 +72663,6 @@ var render = function() {
                         _vm.$set(_vm.form, "cellphone", $$v)
                       },
                       expression: "form.cellphone"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.cellphone,
-                        expression: "form.cellphone"
-                      },
-                      { name: "validate", rawName: "v-validate" }
-                    ],
-                    class: { "p-invalid": _vm.errors.has("cellphone") },
-                    attrs: {
-                      type: "hidden",
-                      format: false,
-                      placeholder: "Número de teléfono",
-                      name: "cellphone",
-                      "data-vv-rules": "required"
-                    },
-                    domProps: { value: _vm.form.cellphone },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "cellphone", $event.target.value)
-                      }
                     }
                   })
                 ],
@@ -73386,12 +72682,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("on_street") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "on_street",
-                      "data-vv-rules": "required",
                       placeholder: "Se encuentra en calle"
                     },
                     model: {
@@ -73417,12 +72710,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("referral_from_cai") },
                     attrs: {
                       options: _vm.referral_from_cai,
                       name: "referral_from_cai",
-                      "data-vv-rules": "required",
                       placeholder: "¿De que CAID viene referido?"
                     },
                     model: {
@@ -73453,12 +72743,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("destiny") },
                     attrs: {
                       options: _vm.destiny,
                       name: "destiny",
-                      "data-vv-rules": "required",
                       placeholder: "Con destino"
                     },
                     model: {
@@ -73487,13 +72774,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputText", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("destiny_reason") },
                     attrs: {
                       id: "destiny_reason",
                       placeholder: "Razón",
-                      name: "destiny_reason",
-                      "data-vv-rules": "required"
+                      name: "destiny_reason"
                     },
                     model: {
                       value: _vm.form.destiny_reason,
@@ -73522,15 +72806,15 @@ var render = function() {
                   _c("Dropdown", {
                     attrs: {
                       options: _vm.provinces,
-                      optionLabel: "name",
+                      optionLabel: "",
                       placeholder: "Provincia"
                     },
                     model: {
-                      value: _vm.province,
+                      value: _vm.form.province,
                       callback: function($$v) {
-                        _vm.province = $$v
+                        _vm.$set(_vm.form, "province", $$v)
                       },
-                      expression: "province"
+                      expression: "form.province"
                     }
                   })
                 ],
@@ -73549,16 +72833,16 @@ var render = function() {
                   _vm._v(" "),
                   _c("Dropdown", {
                     attrs: {
-                      options: _vm.cantones,
-                      optionLabel: "name",
+                      options: _vm.listCanton,
+                      optionLabel: "",
                       placeholder: "Cantón"
                     },
                     model: {
-                      value: _vm.canton,
+                      value: _vm.form.canton,
                       callback: function($$v) {
-                        _vm.canton = $$v
+                        _vm.$set(_vm.form, "canton", $$v)
                       },
-                      expression: "canton"
+                      expression: "form.canton"
                     }
                   })
                 ],
@@ -73578,13 +72862,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputText", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("address") },
                     attrs: {
                       id: "address",
                       placeholder: "Dirección",
-                      name: "address",
-                      "data-vv-rules": "required"
+                      name: "address"
                     },
                     model: {
                       value: _vm.form.address,
@@ -73618,15 +72899,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputText", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: {
-                      "p-invalid": _vm.errors.has("psychiatric_diagnosis")
-                    },
                     attrs: {
                       id: "psychiatric_diagnosis",
                       placeholder: "Diagnóstico psiquiátrico",
-                      name: "psychiatric_diagnosis",
-                      "data-vv-rules": "required"
+                      name: "psychiatric_diagnosis"
                     },
                     model: {
                       value: _vm.form.psychiatric_diagnosis,
@@ -73654,15 +72930,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("InputText", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: {
-                      "p-invalid": _vm.errors.has("drug_dependence_diagnosis")
-                    },
                     attrs: {
                       id: "drug_dependence_diagnosis",
                       placeholder: "Diagnóstico farmacodependencia",
-                      name: "drug_dependence_diagnosis",
-                      "data-vv-rules": "required"
+                      name: "drug_dependence_diagnosis"
                     },
                     model: {
                       value: _vm.form.drug_dependence_diagnosis,
@@ -73685,35 +72956,49 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.consumption_data_table, function(item, index) {
                     return _c("tr", { key: index }, [
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "td",
+                        [
+                          _c("InputText", {
+                            directives: [
+                              { name: "validate", rawName: "v-validate" }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "p-invalid": _vm.errors.has("substance" + index)
+                            },
+                            attrs: {
+                              type: "text",
+                              name: "substance" + index,
+                              "data-vv-rules": "required"
+                            },
+                            model: {
                               value: item.substance,
+                              callback: function($$v) {
+                                _vm.$set(item, "substance", $$v)
+                              },
                               expression: "item.substance"
                             }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: item.substance },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(item, "substance", $event.target.value)
-                            }
-                          }
-                        })
-                      ]),
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c(
                         "td",
                         [
                           _c("Dropdown", {
-                            attrs: { options: _vm.years },
+                            directives: [
+                              { name: "validate", rawName: "v-validate" }
+                            ],
+                            class: {
+                              "p-invalid": _vm.errors.has("start_year" + index)
+                            },
+                            attrs: {
+                              options: _vm.years,
+                              name: "start_year" + index,
+                              "data-vv-rules": "required"
+                            },
                             model: {
                               value: item.start_year,
                               callback: function($$v) {
@@ -73726,93 +73011,111 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "td",
+                        [
+                          _c("InputText", {
+                            directives: [
+                              { name: "validate", rawName: "v-validate" }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "p-invalid": _vm.errors.has(
+                                "frequency_consumption" + index
+                              )
+                            },
+                            attrs: {
+                              type: "text",
+                              name: "frequency_consumption" + index,
+                              "data-vv-rules": "required"
+                            },
+                            model: {
                               value: item.frequency_consumption,
+                              callback: function($$v) {
+                                _vm.$set(item, "frequency_consumption", $$v)
+                              },
                               expression: "item.frequency_consumption"
                             }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: item.frequency_consumption },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                item,
-                                "frequency_consumption",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]),
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "td",
+                        [
+                          _c("InputText", {
+                            directives: [
+                              { name: "validate", rawName: "v-validate" }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "p-invalid": _vm.errors.has("usual_dose" + index)
+                            },
+                            attrs: {
+                              type: "text",
+                              name: "usual_dose" + index,
+                              "data-vv-rules": "required"
+                            },
+                            model: {
                               value: item.usual_dose,
+                              callback: function($$v) {
+                                _vm.$set(item, "usual_dose", $$v)
+                              },
                               expression: "item.usual_dose"
                             }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: item.usual_dose },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(item, "usual_dose", $event.target.value)
-                            }
-                          }
-                        })
-                      ]),
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "td",
+                        [
+                          _c("InputText", {
+                            directives: [
+                              { name: "validate", rawName: "v-validate" }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "p-invalid": _vm.errors.has(
+                                "usual_administratio_way" + index
+                              )
+                            },
+                            attrs: {
+                              type: "text",
+                              name: "usual_administratio_way" + index,
+                              "data-vv-rules": "required"
+                            },
+                            model: {
                               value: item.usual_administratio_way,
+                              callback: function($$v) {
+                                _vm.$set(item, "usual_administratio_way", $$v)
+                              },
                               expression: "item.usual_administratio_way"
                             }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: item.usual_administratio_way },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                item,
-                                "usual_administratio_way",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]),
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c(
                         "td",
                         [
                           _c("Calendar", {
+                            directives: [
+                              { name: "validate", rawName: "v-validate" }
+                            ],
+                            class: {
+                              "p-invalid": _vm.errors.has(
+                                "last_consumption_date" + index
+                              )
+                            },
                             attrs: {
                               showIcon: true,
-                              id: "last_consumption_date"
+                              id: "last_consumption_date",
+                              name: "last_consumption_date" + index,
+                              "data-vv-rules": "required"
                             },
                             model: {
                               value: item.last_consumption_date,
@@ -73820,6 +73123,41 @@ var render = function() {
                                 _vm.$set(item, "last_consumption_date", $$v)
                               },
                               expression: "item.last_consumption_date"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: item.last_consumption_date,
+                                expression: "item.last_consumption_date"
+                              },
+                              { name: "validate", rawName: "v-validate" }
+                            ],
+                            class: {
+                              "p-invalid": _vm.errors.has(
+                                "last_consumption_date" + index
+                              )
+                            },
+                            attrs: {
+                              type: "hidden",
+                              name: "last_consumption_date" + index,
+                              "data-vv-rules": "required"
+                            },
+                            domProps: { value: item.last_consumption_date },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  item,
+                                  "last_consumption_date",
+                                  $event.target.value
+                                )
+                              }
                             }
                           })
                         ],
@@ -73881,12 +73219,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("pending_cases") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "pending_cases",
-                      "data-vv-rules": "required",
                       placeholder:
                         "¿Tiene casos pendientes por infringir las leyes?"
                     },
@@ -73916,12 +73251,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("egress") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "egress",
-                      "data-vv-rules": "required",
                       placeholder: "Egreso"
                     },
                     model: {
@@ -73950,12 +73282,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("egress_reason_law") },
                     attrs: {
                       options: _vm.egress_reason_law,
                       name: "egress_reason_law",
-                      "data-vv-rules": "required",
                       placeholder: "Motivo"
                     },
                     model: {
@@ -73988,12 +73317,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("drugs") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "drugs",
-                      "data-vv-rules": "required",
                       placeholder: "Asociadas a las drogas"
                     },
                     model: {
@@ -74022,12 +73348,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("sexual_nature") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "sexual_nature",
-                      "data-vv-rules": "required",
                       placeholder: "De índole sexual"
                     },
                     model: {
@@ -74056,12 +73379,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("against_property") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "against_property",
-                      "data-vv-rules": "required",
                       placeholder: "Contra la propiedad"
                     },
                     model: {
@@ -74092,12 +73412,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("against_life") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "against_life",
-                      "data-vv-rules": "required",
                       placeholder: "Contra la vida"
                     },
                     model: {
@@ -74126,12 +73443,9 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("Dropdown", {
-                    directives: [{ name: "validate", rawName: "v-validate" }],
-                    class: { "p-invalid": _vm.errors.has("others_law") },
                     attrs: {
                       options: _vm.yesOrNot,
                       name: "others_law",
-                      "data-vv-rules": "required",
                       placeholder: "Otros"
                     },
                     model: {

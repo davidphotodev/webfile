@@ -21,7 +21,16 @@ class ResidentFactory extends Factory
      * @return array
      */
     public function definition()
-    {
+    {   
+
+        $newArray = [[
+            'substance' => '', 
+            'start_year' => '', 
+            'frequency_consumption' => '',
+            'usual_dose' => '',
+            'usual_administratio_way' => '',
+            'last_consumption_date' => ''
+        ]];
         return [
             'name'  => $this->faker->name,
             'surname'  => $this->faker->name,
@@ -61,7 +70,7 @@ class ResidentFactory extends Factory
             'address'  => Str::random(10),
             'psychiatric_diagnosis'  => Str::random(10),
             'drug_dependence_diagnosis'  => Str::random(10),
-            'consumption_data_table'  => json_encode(Str::random(10)),
+            'consumption_data_table'  => json_encode($newArray),
             'pending_cases'  => Str::random(10),
             'egress'  => Str::random(10),
             'egress_reason_law'  => Str::random(10),
@@ -87,6 +96,7 @@ class ResidentFactory extends Factory
             'group_sessions'  => Str::random(10),
             'others'  => Str::random(10),
             'commentaries'  => Str::random(10),
+            'photo'  => null,
         ];
     }
 }

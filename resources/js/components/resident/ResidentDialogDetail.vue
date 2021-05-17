@@ -15,6 +15,13 @@
                     <strong class="text-18">Datos Generales</strong>
                 </div>
 
+                <div style="display:flex;align-items: center;justify-content: center;" class="mb-3">
+                        <Avatar 
+                            :image="form.image"
+                            size="xlarge"
+                        />
+                </div>
+
                 <div class="p-fluid p-formgrid p-grid">
                     <div class="p-field p-col">
                     <label for="name" class="p-field">Nombre</label>
@@ -428,18 +435,18 @@
                         <label for="province" class="p-field">Provincia</label>
                         <Dropdown
                             disabled 
-                            v-model="province" 
+                            v-model="form.province" 
                             :options="provinces"
-                            optionLabel="name"
+                            optionLabel=""
                             placeholder="Provincia" />
                     </div>
                     <div class="p-field p-col">
                         <label for="canton" class="p-field">Cantón</label>
                         <Dropdown
                             disabled 
-                            v-model="canton" 
-                            :options="cantones" 
-                            optionLabel="name"
+                            v-model="form.canton" 
+                            :options="listCanton" 
+                            optionLabel=""
                             placeholder="Cantón" />
                     </div>
                 </div>
@@ -645,11 +652,6 @@
                 </div>
                 
             </div>
-
-            <div class="text-center">
-                <Button  @click="validateForm()"  label="Actualizar"></Button>
-            </div>
-
             
         </div>
     </div>
@@ -659,9 +661,10 @@
 
 <script>
 import { Field } from 'vee-validate';
+import  {cantonesData} from '../../utils/cantones.js';
 
 export default {
-    name: 'ResidentDialogEdit',
+    name: 'ResidentDialogDetail',
     props: ['resident'],
     components: {
         Field,
@@ -681,6 +684,8 @@ export default {
             years: [],
             province: {},
             canton: {},
+            listCanton: [],
+            cantonesData: cantonesData,
             consumption_data_table: [
                 {
                     substance: '', 
@@ -757,6 +762,7 @@ export default {
                 group_sessions: this.resident.group_sessions,
                 others: this.resident.others,
                 commentaries: this.resident.commentaries,
+                image: this.resident.photo,
             },
 
             occupation: ['Administrador','Agricultor','Amo de Casa','Área Salud','Bodeguero','Call Center','Chofer',
@@ -774,6 +780,28 @@ export default {
         console.log(
             JSON.parse(this.resident.consumption_data_table)
         )
+        this.provinces = ['San José', 'Alajuela', 'Cartago','Heredia','Guanacaste','Puntarenas','Limón'];
+        if (this.form.province == 'San José') {
+                this.listCanton = this.cantonesData[0].catones;
+        }
+        if (this.form.province == 'Alajuela') {
+                this.listCanton = this.cantonesData[1].catones;
+        }
+        if (this.form.province == 'Cartago') {
+                this.listCanton = this.cantonesData[2].catones;
+        }
+        if (this.form.province == 'Heredia') {
+                this.listCanton = this.cantonesData[3].catones;
+        }
+        if (this.form.province == 'Guanacaste') {
+                this.listCanton = this.cantonesData[4].catones;
+        }
+        if (this.form.province == 'Puntarenas') {
+                this.listCanton = this.cantonesData[5].catones;
+        }
+        if (this.form.province == 'Limón') {
+                this.listCanton = this.cantonesData[6].catones;
+        }
     },
 
     computed: {

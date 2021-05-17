@@ -44,9 +44,10 @@
         <Column header="Imagen">
           <template #body="slotProps">
               <Avatar 
-                image="https://maristasperu.pe/wp-content/uploads/2016/01/tutor-8.jpg"
+                :image="slotProps.data.photo"
                 size="xlarge"
               />
+
           </template>
         </Column>
         <Column field="identification" header="Identificación"></Column>
