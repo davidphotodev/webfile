@@ -68,6 +68,9 @@ Vue.component('resident-dialog-add', require('./components/resident/ResidentDial
 Vue.component('resident-dialog-edit', require('./components/resident/ResidentDialogEdit.vue').default);
 Vue.component('resident-dialog-detail', require('./components/resident/ResidentDialogDetail.vue').default);
 
+Vue.component('miembros', require('./components/members/Members.vue').default);
+Vue.component('member-create', require('./components/members/MemberCreate.vue').default);
+Vue.component('member-edit', require('./components/members/MemberEdit.vue').default);
 
 const app = new Vue({
     el: '#app',

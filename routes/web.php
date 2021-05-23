@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MiembrosController;
 use App\Http\Controllers\ResidentController;
 
 /*
@@ -14,9 +15,7 @@ use App\Http\Controllers\ResidentController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+
 
 Route::prefix('residents')->group(function () {
     Route::get('/', [ResidentController::class, 'index'])->name('resident.index');
@@ -34,7 +33,25 @@ Route::prefix('residents')->group(function () {
     Route::get('/getResidentsCompressed', [ResidentController::class, 'getResidentsCompressed']);
 });
 
+Route::prefix('members')->group(function () {
+    Route::get('/',[MiembrosController::class, 'index'])->name('miembros.index');
+    Route::get('/create', [MiembrosController::class, 'create'])->name('miembros.create');
+    Route::get('/edit/{id}', [MiembrosController::class, 'edit'])->name('miembros.edit');
+    Route::get('/show/{id}', [MiembrosController::class, 'show'])->name('miembros.shpw');
+    Route::put('/update/{id}', [MiembrosController::class, 'update'])->name('miembros.update');
+    Route::post('/add-member', [MiembrosController::class, 'store'])->name('miembros.store');
+    Route::get('/getData', [MiembrosController::class, 'getData'])->name('miembros.get');
+    Route::delete('/destroy/{id}', [MiembrosController::class, 'destroy'])->name('miembros.destroy');
+    Route::delete('/destroySeveralRecords/{ids}', [MiembrosController::class, 'destroySeveralRecords'])->name('miembros.destroySeveralRecords');
+
+});
+
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+Route::get('/', function () {
+    return redirect()->route('login');
+});

@@ -44,10 +44,13 @@ export default {
                    items:[
                       {
                          label:'Agregar',
+                         url: '/members/create',
+                      
                          icon:'pi pi-fw pi-plus'                         
                       },
                       {
                          label:'Ver todos',
+                        url: '/members',
                          icon:'pi pi-fw pi-search'
                       },
                    ]
@@ -68,6 +71,7 @@ export default {
                 },
                 {
                    label:'Salir',
+                   url: '/logout',
                    icon:'pi pi-fw pi-power-off',
                 }
                 

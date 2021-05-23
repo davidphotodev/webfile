@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\Session;
 
 class ResidentController extends Controller
 {
-  
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         return view('resident.resident');
@@ -43,7 +47,6 @@ class ResidentController extends Controller
 
     public function store(Request $request)
     {
-    //    return json_encode($request->consumption_data_table);
        $resident = new Resident;
        $resident->name  = $request->name;   
        $resident->surname  = $request->surname;
@@ -110,8 +113,6 @@ class ResidentController extends Controller
        $resident->others  = $request->others;   
        $resident->commentaries  = $request->commentaries;   
        $resident->photo  = $request->image;
-
-    //    $resident->save();
       
        
         try {
