@@ -8,7 +8,7 @@
             <div>
                 <div class="container">
                     <div class="text-center">
-                        <h2>Agregar Miembro</h2>
+                        <h2>Editar Miembro</h2>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -18,7 +18,11 @@
                 <div style="display:flex;align-items: center;justify-content: center;" class="mb-3">
 
                     <input type="file" id="image" placeholder="Imagen corporativa" @change="getImage" accept="image/*" ref="image" class="common-input">
-                    <img v-if="!!form.image" :src="form.image" class="avatar" alt="Image" width="50px">
+                    <!-- <img v-if="!!form.image" :src="form.image" class="avatar" alt="Image" width="50px"> -->
+                        <Avatar 
+                            :image="form.image"
+                            size="xlarge"
+                        />
                 </div>
                 <div class="p-fluid p-formgrid p-grid mt-5">
                     <div class="p-field p-col">
@@ -90,7 +94,8 @@ export default {
                 phone_number: Number(this.member.phone_number),
                 password: null,
                 confirmPassword: null,
-                rol: this.member.rol
+                rol: this.member.rol,
+                image : this.member.photo
             },
             rolesform : this.roles,
             confirmPasswordStatus: false,

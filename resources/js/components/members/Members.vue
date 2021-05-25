@@ -136,7 +136,7 @@ export default {
       },
       deleteResident(resident, index){
         this.$confirm.require({
-            message: `Estás seguro de eliminar a ${resident.name} ${resident.surname}`,
+            message: `Estás seguro de eliminar a ${resident.name}`,
             header: 'Confirmar',
             icon: 'pi pi-exclamation-triangle',
             accept: async () => {
@@ -149,7 +149,7 @@ export default {
                 }
             },
             reject: () => {
-                console.log("No pasa nada");
+                // console.log("No pasa nada");
             }
         });
       },

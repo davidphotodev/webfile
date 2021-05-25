@@ -2157,6 +2157,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2174,7 +2178,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         phone_number: Number(this.member.phone_number),
         password: null,
         confirmPassword: null,
-        rol: this.member.rol
+        rol: this.member.rol,
+        image: this.member.photo
       },
       rolesform: this.roles,
       confirmPasswordStatus: false
@@ -2510,7 +2515,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       this.$confirm.require({
-        message: "Est\xE1s seguro de eliminar a ".concat(resident.name, " ").concat(resident.surname),
+        message: "Est\xE1s seguro de eliminar a ".concat(resident.name),
         header: 'Confirmar',
         icon: 'pi pi-exclamation-triangle',
         accept: function () {
@@ -2558,8 +2563,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
           return accept;
         }(),
-        reject: function reject() {
-          console.log("No pasa nada");
+        reject: function reject() {// console.log("No pasa nada");
         }
       });
     },
@@ -69260,17 +69264,11 @@ var render = function() {
                   on: { change: _vm.getImage }
                 }),
                 _vm._v(" "),
-                !!_vm.form.image
-                  ? _c("img", {
-                      staticClass: "avatar",
-                      attrs: {
-                        src: _vm.form.image,
-                        alt: "Image",
-                        width: "50px"
-                      }
-                    })
-                  : _vm._e()
-              ]
+                _c("Avatar", {
+                  attrs: { image: _vm.form.image, size: "xlarge" }
+                })
+              ],
+              1
             ),
             _vm._v(" "),
             _c("div", { staticClass: "p-fluid p-formgrid p-grid mt-5" }, [
@@ -69513,7 +69511,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "text-center" }, [
-        _c("h2", [_vm._v("Agregar Miembro")])
+        _c("h2", [_vm._v("Editar Miembro")])
       ])
     ])
   },

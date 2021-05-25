@@ -73,7 +73,8 @@ class MiembrosController extends Controller
             $user->password  = Hash::make($request->password);
         }  
         $user->rol  = $request->rol;   
-        
+        $user->photo  = $request->image;
+
         try {
             if ($user->save()) {
                 Session::flash('message', 'Registro Actualizado con exito');
