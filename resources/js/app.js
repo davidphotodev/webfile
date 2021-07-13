@@ -2,9 +2,10 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import VeeValidate from 'vee-validate';
+import CKEditor from 'ckeditor4-vue';
 
 Vue.use(VeeValidate);
-
+Vue.use( CKEditor );
 
 import Vue from 'vue';
 
@@ -71,6 +72,13 @@ Vue.component('resident-dialog-detail', require('./components/resident/ResidentD
 Vue.component('miembros', require('./components/members/Members.vue').default);
 Vue.component('member-create', require('./components/members/MemberCreate.vue').default);
 Vue.component('member-edit', require('./components/members/MemberEdit.vue').default);
+
+Vue.component('aplicar-instrumento', require('./components/instrumento/Aplicar.vue').default);
+Vue.component('create-instrumento', require('./components/instrumento/Create.vue').default);
+Vue.component('gestion-instrumento', require('./components/instrumento/Gestionar.vue').default);
+Vue.component('editar-instrumento', require('./components/instrumento/Editar.vue').default);
+Vue.component('llenar-instrumento', require('./components/instrumento/Llenar.vue').default);
+Vue.component('ver-instrumento', require('./components/instrumento/Show.vue').default);
 
 const app = new Vue({
     el: '#app',

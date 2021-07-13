@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Resident;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
+use App\Models\InstrumentResident;
 use Illuminate\Support\Facades\Session;
 
 class ResidentController extends Controller
@@ -130,7 +131,9 @@ class ResidentController extends Controller
     public function show($id)
     {
         $resident = Resident::findOrfail($id);
-        return view('resident.detail', compact('resident'));
+        $rol = auth()->user()->rol;
+        $instrumentos = InstrumentResident::where('resident_id', $id)->get();
+        return view('resident.detail', compact('resident', 'instrumentos', 'rol'));
     }
 
     public function edit($id)
@@ -252,4 +255,18 @@ class ResidentController extends Controller
             return response()->json($th);
         }
     }
+
+
+    public function getResidentsJson($query){
+        $residents = Resident::where('name', 'like', );
+
+        // $residents = $residents->map( function ($item) {
+        //     return collect($item->toArray())
+        //         ->only(['name', 'surname', 'nationality', 'record'])
+        //         ->all();
+        // });
+
+
+        return $residents;
+    }   
 }

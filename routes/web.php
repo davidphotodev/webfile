@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MiembrosController;
 use App\Http\Controllers\ResidentController;
+use App\Http\Controllers\InstrumentoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,6 @@ Route::prefix('residents')->group(function () {
     Route::delete('/destroy/{id}', [ResidentController::class, 'destroy'])->name('resident.destroy');
     Route::delete('/destroySeveralRecords/{ids}', [ResidentController::class, 'destroySeveralRecords'])->name('resident.destroySeveralRecords');
     Route::get('getCantonJson',[ResidentController::class, 'getCantonJson'])->name('getCantonJson');
-
-
     Route::get('/getResidentsCompressed', [ResidentController::class, 'getResidentsCompressed']);
 });
 
@@ -46,6 +45,25 @@ Route::prefix('members')->group(function () {
 
 });
 
+Route::prefix('instruments')->group(function () {
+    Route::get('/aplicar',[InstrumentoController::class, 'aplicar'])->name('intrumento.aplicar');
+    Route::get('/gestionar', [InstrumentoController::class, 'gestionar'])->name('intrumento.gestionar');
+    Route::get('/editar/{id}', [InstrumentoController::class, 'edit'])->name('intrumento.edit');
+    Route::get('/llenar/{id}', [InstrumentoController::class, 'llenar'])->name('intrumento.llenar');
+    Route::get('/ver/{id}/{type}', [InstrumentoController::class, 'ver'])->name('intrumento.ver');
+    Route::get('/create', [InstrumentoController::class, 'create'])->name('intrumento.crear');
+    Route::post('/store', [InstrumentoController::class, 'store'])->name('intrumento.store');
+    Route::post('/aplicar-resident-get', [InstrumentoController::class, 'aplicaWithResidentData'])->name('intrumento.aplicar.data.resident');
+    Route::post('/update/{id}', [InstrumentoController::class, 'update'])->name('intrumento.update');
+    Route::post('/llenar-update/{id}', [InstrumentoController::class, 'llenarUpdate'])->name('intrumento.update.llenar');
+    Route::post('/aplicar-resident', [InstrumentoController::class, 'aplicarResident'])->name('intrumento.aplicar.resident');
+    Route::get('/all', [InstrumentoController::class, 'all'])->name('intrumento.all');
+    Route::get('/my', [InstrumentoController::class, 'gestionarMy'])->name('intrumento.my');
+    Route::delete('/destroy/{id}', [InstrumentoController::class, 'destroy'])->name('InstrumentoController.destroy');
+
+});
+
+Route::get('/getResidentJson/{query}',[InstrumentoController::class, 'getResidentJson'])->name('getResidentJson');
 
 Auth::routes();
 

@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container">
-    <resident-dialog-detail :resident='@json($resident)'/>
+    <resident-dialog-detail  :rol='@json($rol)' :resident='@json($resident)' :instrumentos='@json($instrumentos)'/>
 </div>
 @endsection
