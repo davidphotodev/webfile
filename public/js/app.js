@@ -1978,6 +1978,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Aplicar",
   props: ["instrumentos", "rol"],
@@ -1989,7 +2018,10 @@ __webpack_require__.r(__webpack_exports__);
       resultsResidents: [],
       instrumentosAplicados: [],
       selectedResident: null,
-      resultstInstruments: []
+      resultstInstruments: [],
+      selectedStatus: null,
+      selectedCount: null,
+      selectedFases: null
     };
   },
   created: function created() {//   this.getData()
@@ -2022,6 +2054,7 @@ __webpack_require__.r(__webpack_exports__);
       this.selectedResident = result;
       this.resultstInstrument = this.instrumentos;
       this.loadInstrumentsResident();
+      this.loadInstrumentsStatus();
     },
     loadInstrumentsResident: function loadInstrumentsResident() {
       var _this3 = this;
@@ -2035,19 +2068,71 @@ __webpack_require__.r(__webpack_exports__);
         _this3.loadNewInstrument();
       })["catch"](function (error) {});
     },
-    loadNewInstrument: function loadNewInstrument() {
+    loadInstrumentsStatus: function loadInstrumentsStatus() {
       var _this4 = this;
 
+      var form = {
+        'id': this.selectedResident.id
+      };
+      axios.post("/instruments/resident-instrument-status", form).then(function (response) {
+        console.log(response.data);
+
+        if (_this4.rol == 'Psicología') {
+          _this4.selectedStatus = response.data.s_psicologia;
+          _this4.selectedCount = response.data.c_psicologia;
+          _this4.selectedFases = response.data.f_psicologia;
+        }
+
+        if (_this4.rol == 'Trabajado Social') {
+          _this4.selectedStatus = response.data.s_trabajo_social;
+          _this4.selectedCount = response.data.c_trabajo_social;
+          _this4.selectedFases = response.data.f_trabajo_social;
+        }
+
+        if (_this4.rol == 'Enfermería') {
+          _this4.selectedStatus = response.data.s_enfermeria;
+          _this4.selectedCount = response.data.c_enfermeria;
+          _this4.selectedFases = response.data.f_enfermeria;
+        }
+
+        if (_this4.rol == 'Doctor') {
+          _this4.selectedStatus = response.data.s_medicina;
+          _this4.selectedCount = response.data.c_medicina;
+          _this4.selectedFases = response.data.f_medicina;
+        }
+
+        if (_this4.rol == 'Consejero') {
+          _this4.selectedStatus = response.data.s_consejeria;
+          _this4.selectedCount = response.data.c_consejeria;
+          _this4.selectedFases = response.data.f_consejeria;
+        }
+      })["catch"](function (error) {});
+    },
+    onChange: function onChange() {
+      var form = {
+        status: this.selectedStatus,
+        count: this.selectedCount,
+        fase: this.selectedFases,
+        resident: this.selectedResident.id,
+        rol: this.rol
+      };
+      axios.post("/instruments/aplicar-resident-instrument-status", form).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {});
+    },
+    loadNewInstrument: function loadNewInstrument() {
+      var _this5 = this;
+
       this.instrumentosAplicados.forEach(function (valor) {
-        for (var i = _this4.resultstInstruments.length - 1; i >= 0; --i) {
-          if (_this4.resultstInstruments[i].id == valor.instrument_id) {
-            _this4.resultstInstruments.splice(i, 1);
+        for (var i = _this5.resultstInstruments.length - 1; i >= 0; --i) {
+          if (_this5.resultstInstruments[i].id == valor.instrument_id) {
+            _this5.resultstInstruments.splice(i, 1);
           }
         }
       });
     },
     aplicar: function aplicar(instrument) {
-      var _this5 = this;
+      var _this6 = this;
 
       if (!this.selectedResident) {
         alert('Seleccione un residente');
@@ -2059,7 +2144,7 @@ __webpack_require__.r(__webpack_exports__);
         resident: this.selectedResident.id
       };
       axios.post("/instruments/aplicar-resident", form).then(function (response) {
-        _this5.loadInstrumentsResident();
+        _this6.loadInstrumentsResident();
 
         window.open("/instruments/llenar/" + response.data.id, '_blank');
       })["catch"](function (error) {});
@@ -70473,6 +70558,166 @@ var render = function() {
                     "\n        "
                 )
               ])
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.selectedResident
+      ? _c("div", { staticClass: "my-5" }, [
+          _c("div", { staticClass: "row col-md-12" }, [
+            _c("div", { staticClass: "col-md-4" }, [
+              _c("label", { attrs: { for: "" } }, [
+                _vm._v("Establecer estatus del instrumento")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selectedStatus,
+                      expression: "selectedStatus"
+                    }
+                  ],
+                  staticClass: "form-select",
+                  attrs: { "aria-label": "Default select example" },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.selectedStatus = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      function($event) {
+                        return _vm.onChange()
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "En Proceso" } }, [
+                    _vm._v("En Proceso")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Completo" } }, [
+                    _vm._v("Completo")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "No logrados" } }, [
+                    _vm._v("No logrados")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" }, [
+              _c("label", { attrs: { for: "" } }, [
+                _vm._v("Cantidad de veces atendido")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selectedCount,
+                      expression: "selectedCount"
+                    }
+                  ],
+                  staticClass: "form-select",
+                  attrs: { "aria-label": "Default select example" },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.selectedCount = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      function($event) {
+                        return _vm.onChange()
+                      }
+                    ]
+                  }
+                },
+                _vm._l(50, function(n) {
+                  return _c("option", { key: n }, [_vm._v(_vm._s(n))])
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" }, [
+              _c("label", { attrs: { for: "" } }, [_vm._v("Fases")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selectedFases,
+                      expression: "selectedFases"
+                    }
+                  ],
+                  staticClass: "form-select",
+                  attrs: { "aria-label": "Default select example" },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.selectedFases = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      function($event) {
+                        return _vm.onChange()
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "Fase 1" } }, [
+                    _vm._v("Fase 1")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Fase 2" } }, [
+                    _vm._v("Fase 2")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Fase 3" } }, [
+                    _vm._v("Fase 3")
+                  ])
+                ]
+              )
             ])
           ])
         ])

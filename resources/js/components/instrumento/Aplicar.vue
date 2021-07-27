@@ -54,6 +54,35 @@
         </div>
       </div>
     </div>
+
+    <div class="my-5"  v-if="selectedResident">
+      <div class="row col-md-12">
+        <div class="col-md-4">
+          <label for="">Establecer estatus del instrumento</label>
+          <select class="form-select" aria-label="Default select example" v-model="selectedStatus" @change="onChange()" >
+              <option value="En Proceso">En Proceso</option>
+              <option value="Completo">Completo</option>
+            <option value="No logrados">No logrados</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="">Cantidad de veces atendido</label>
+          <select class="form-select" aria-label="Default select example" v-model="selectedCount" @change="onChange()" >
+              <option v-for="n in 50" :key="n">{{n}}</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="">Fases</label>
+          <select class="form-select" aria-label="Default select example" v-model="selectedFases" @change="onChange()" >
+              <option value="Fase 1">Fase 1</option>
+              <option value="Fase 2">Fase 2</option>
+            <option value="Fase 3">Fase 3</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+
     <div v-if="instrumentosAplicados.length > 0">
       <div class="my-5 mx-2 d-flex justify-content-between">
         <h3>Instrumentos Aplicados a : {{selectedResident.name}}</h3>
@@ -133,6 +162,9 @@ export default {
       instrumentosAplicados: [],
       selectedResident: null,
       resultstInstruments:[],
+      selectedStatus: null,
+      selectedCount: null,
+      selectedFases: null,
     };
   },
   created() {
@@ -155,12 +187,14 @@ export default {
           this.resultstInstruments = response.data;
         });
     },
+
     selectResident(result) {
       this.loadInstrument();
       this.resultsResidents = [];
       this.selectedResident = result;
       this.resultstInstrument = this.instrumentos
       this.loadInstrumentsResident();
+      this.loadInstrumentsStatus();
     },
 
     loadInstrumentsResident(){
@@ -175,10 +209,69 @@ export default {
 
         })
         .catch((error) => {});
+    },
 
-        
+    loadInstrumentsStatus(){
+      let form= {
+        'id': this.selectedResident.id
+      }
+      axios
+        .post("/instruments/resident-instrument-status", form)
+        .then((response) => {
+
+          console.log(response.data)
+
+            if(this.rol == 'Psicología'){
+                this.selectedStatus = response.data.s_psicologia; 
+                this.selectedCount = response.data.c_psicologia; 
+                this.selectedFases = response.data.f_psicologia; 
+            }
+            if(this.rol == 'Trabajado Social'){
+              this.selectedStatus = response.data.s_trabajo_social; 
+              this.selectedCount = response.data.c_trabajo_social; 
+              this.selectedFases = response.data.f_trabajo_social; 
+                
+            }
+            if(this.rol == 'Enfermería'){
+              this.selectedStatus = response.data.s_enfermeria; 
+              this.selectedCount = response.data.c_enfermeria; 
+              this.selectedFases = response.data.f_enfermeria; 
+                
+            }
+            if(this.rol == 'Doctor'){
+              this.selectedStatus = response.data.s_medicina; 
+              this.selectedCount = response.data.c_medicina; 
+              this.selectedFases = response.data.f_medicina; 
+            }
+            if(this.rol == 'Consejero'){
+              this.selectedStatus = response.data.s_consejeria; 
+              this.selectedCount = response.data.c_consejeria; 
+              this.selectedFases = response.data.f_consejeria; 
+                
+            }
+
+        })
+        .catch((error) => {});
     },
     
+    onChange(){
+      let form = {
+            status: this.selectedStatus,
+            count: this.selectedCount,
+            fase: this.selectedFases,
+            resident: this.selectedResident.id,
+            rol: this.rol,
+          };
+
+      axios
+        .post("/instruments/aplicar-resident-instrument-status", form)
+        .then((response) => {
+          console.log(response)
+
+        })
+        .catch((error) => {});
+    },
+
     loadNewInstrument(){
       this.instrumentosAplicados.forEach((valor) =>  { 
         for (var i = this.resultstInstruments.length - 1; i >= 0; --i) {

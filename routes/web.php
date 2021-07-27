@@ -54,6 +54,8 @@ Route::prefix('instruments')->group(function () {
     Route::get('/create', [InstrumentoController::class, 'create'])->name('intrumento.crear');
     Route::post('/store', [InstrumentoController::class, 'store'])->name('intrumento.store');
     Route::post('/aplicar-resident-get', [InstrumentoController::class, 'aplicaWithResidentData'])->name('intrumento.aplicar.data.resident');
+    Route::post('/aplicar-resident-instrument-status', [InstrumentoController::class, 'aplicaInstrumentStatusResident'])->name('intrumento.aplicar.status.resident');
+    Route::post('/resident-instrument-status', [InstrumentoController::class, 'instrumentStatusResident'])->name('intrumento.status.data.resident');
     Route::post('/update/{id}', [InstrumentoController::class, 'update'])->name('intrumento.update');
     Route::post('/llenar-update/{id}', [InstrumentoController::class, 'llenarUpdate'])->name('intrumento.update.llenar');
     Route::post('/aplicar-resident', [InstrumentoController::class, 'aplicarResident'])->name('intrumento.aplicar.resident');
