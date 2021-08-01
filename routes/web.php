@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExtraDocumentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MiembrosController;
 use App\Http\Controllers\ResidentController;
@@ -62,6 +63,14 @@ Route::prefix('instruments')->group(function () {
     Route::get('/all', [InstrumentoController::class, 'all'])->name('intrumento.all');
     Route::get('/my', [InstrumentoController::class, 'gestionarMy'])->name('intrumento.my');
     Route::delete('/destroy/{id}', [InstrumentoController::class, 'destroy'])->name('InstrumentoController.destroy');
+
+});
+
+Route::prefix('reports')->group(function () {
+    Route::get('/monthly', [ExtraDocumentController::class, 'monthly'])->name('report.monthly');
+    Route::post('/monthly-generate', [ExtraDocumentController::class, 'monthlyGenerate'])->name('report.monthly.generate');
+    Route::get('/internal', [ExtraDocumentController::class, 'internal'])->name('report.internal');
+    Route::post('/internal-generate', [ExtraDocumentController::class, 'internalGenerate'])->name('report.internal.generate');
 
 });
 

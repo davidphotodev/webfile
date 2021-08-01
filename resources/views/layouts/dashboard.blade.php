@@ -45,8 +45,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://kit.fontawesome.com/e522556494.js" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="https://kit.fontawesome.com/e522556494.js" crossorigin="anonymous"></script> --}}
+    <script src="{{ asset('js/app.js') }}"></script>
     
 </body>
 </html>

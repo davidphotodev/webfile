@@ -6449,10 +6449,12 @@ __webpack_require__.r(__webpack_exports__);
         label: "Reportes",
         icon: "pi pi-fw pi-chart-bar",
         items: [{
-          label: "IAFA",
+          label: "Mensual",
+          url: "/reports/monthly",
           icon: "pi pi-fw pi-external-link"
         }, {
           label: "Iternos",
+          url: "/reports/internal",
           icon: "pi pi-fw pi-external-link"
         }]
       }, {
