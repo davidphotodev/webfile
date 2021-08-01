@@ -84,7 +84,6 @@
 							<th>Trabajo Social</th>
 							<th>Consejeria</th>
 							<th>Terapia Ocupacional</th>
-							<th>Etapa del Programa</th>
 							<th>TS</th>
 							<th>PSI</th>
 							<th>TO</th>
@@ -106,7 +105,6 @@
 								<td>{{ $date->instrument_status['c_trabajo_social']}}</td>
 								<td>{{ $date->instrument_status['c_consejeria'] }}</td>
 								<td> - </td>
-								<td>{{ $date->fi_otras }}</td>
 								<td>{{ $date->instrument_status['s_trabajo_social'] }} </td>
 								<td>{{ $date->instrument_status['s_psicologia'] }}</td>
 								<td> - </td>
