@@ -6419,6 +6419,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "MenuTop",
@@ -100621,7 +100630,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c(
       "div",
-      { staticClass: "col s2 input-field d-flex flex-column" },
+      { staticClass: "col-md-3 s2 input-field d-flex flex-column" },
       [
         _c("label", { attrs: { for: "fecha_ingreso" } }, [
           _vm._v("Fecha Ingreso")
@@ -100664,7 +100673,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "col s2 input-field d-flex flex-column" },
+      { staticClass: "col-md-3 s2 input-field d-flex flex-column" },
       [
         _c("label", { attrs: { for: "fecha_ingreso" } }, [
           _vm._v("Fecha Egreso")
@@ -100703,10 +100712,35 @@ var render = function() {
         })
       ],
       1
-    )
+    ),
+    _vm._v(" "),
+    _vm._m(0)
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3 s2 input-field" }, [
+      _c("label", { attrs: { for: "sexo" } }, [_vm._v("Sexo")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        { staticClass: " form-control", attrs: { name: "sexo", id: "sexo" } },
+        [
+          _c("option"),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "Masculino" } }, [_vm._v("Hombre")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "Femenino" } }, [_vm._v("Mujer")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "Otro" } }, [_vm._v("Otro")])
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

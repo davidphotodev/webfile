@@ -17,16 +17,7 @@
                     </div>
 
                     <div class="row mt-4 mb-5 align-items-center">
-                        <div class="col s2 input-field">
-                            <label for="sexo">Sexo</label>
-                            <select name="sexo" id="sexo" class=" form-control">
-                                <option></option>
-                                <option value="Masculino">Hombre</option>
-                                <option value="Femenino">Mujer</option>
-                                <option value="Otro">Otro</option>
-                            </select>
-                        </div>
-                        <div class="col s1 input-field">
+                        <div class="col-md-3 s1 input-field">
                             <label for="nacionalidad">Nacionalidad</label>
                             <select name="nacionalidad" id="nacionalidad" class=" form-control">
                                 <option></option>
@@ -35,7 +26,7 @@
                             </select>
                         </div>
 
-                        <div class="col s1 input-field">
+                        <div class="col-md-3 s1 input-field">
                             <label for="sexo">Origen</label>
                             <select name="origen" id="sexo" class=" form-control">
                                 <option></option>
