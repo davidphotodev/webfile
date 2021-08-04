@@ -17,9 +17,9 @@ class ExtraDocumentController extends Controller
             $fecha_egreso = $data['fecha_egreso'];
             $origen = $data['origen'];
             $nacion = $data['nacionalidad'];
-            
+            //"2021-07-23"
             if(count(request()->all()) > 0){
-
+                // dd($fecha_ingreso);
                 $result =  Resident::Sexo($sexo)
                             ->DateIngreso($fecha_ingreso)
                             ->DateEgreso($fecha_egreso)

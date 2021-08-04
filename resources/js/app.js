@@ -80,6 +80,8 @@ Vue.component('editar-instrumento', require('./components/instrumento/Editar.vue
 Vue.component('llenar-instrumento', require('./components/instrumento/Llenar.vue').default);
 Vue.component('ver-instrumento', require('./components/instrumento/Show.vue').default);
 
+Vue.component('calendar-vue', require('./components/shared/Calendar.vue').default);
+
 const app = new Vue({
     el: '#app',
 });
