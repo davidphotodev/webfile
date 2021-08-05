@@ -17,7 +17,7 @@ class ExtraDocumentController extends Controller
             $fecha_egreso = $data['fecha_egreso'];
             $origen = $data['origen'];
             $nacion = $data['nacionalidad'];
-            //"2021-07-23"
+
             if(count(request()->all()) > 0){
                 // dd($fecha_ingreso);
                 $result =  Resident::Sexo($sexo)
@@ -25,12 +25,14 @@ class ExtraDocumentController extends Controller
                             ->DateEgreso($fecha_egreso)
                             ->Origin($origen)
                             ->Nacion($nacion)
+                            ->with('instrument_status')
                             ->get();
 
             }else{
-                $result =   Resident::all();
+                $result =   Resident::with('instrument_status')->get();
             }
 
+        // dd($result);
        return view('reports.monthly', ['dates' =>  $result]);
     }
 
