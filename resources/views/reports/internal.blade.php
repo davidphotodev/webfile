@@ -54,7 +54,7 @@
         </div>
         <div class="row border white" id="inner-box">
             <div class="padding-0 alto" style="border-right: 1px solid #cfcfcf;">
-                <div class="grey-text text-darken-3 padding-25 table-responsive">
+                <div class="grey-text text-darken-3 padding-25 table-responsive" style="max-height: 100vh">
                     <table class="table table-bordered">
                         <thead class="table-dark">
                             <th>Nro</th>
